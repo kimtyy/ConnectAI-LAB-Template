@@ -4,22 +4,23 @@ interface ConnectAILabLogoProps {
 }
 
 export function ConnectAILabLogo({ className = '', size = 18 }: ConnectAILabLogoProps) {
-  const path = 'M 1.5,23 L 1.5,33 C 1.5,38.5 6,43 11.5,43 L 16.5,43 C 22,43 26.5,38.5 26.5,33 Q 28,28 33,26.5 C 38.5,26.5 43,22 43,16.5 L 43,11.5 C 43,6 38.5,1.5 33,1.5 L 23,1.5 Q 12,12 1.5,23 Z';
-
   return (
     <svg
       width={size}
       height={size}
-      viewBox="-50 -50 100 100"
-      fill="currentColor"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
     >
-      <g>
-        <path d={path} transform="rotate(0)" />
-        <path d={path} transform="rotate(90)" />
-        <path d={path} transform="rotate(180)" />
-        <path d={path} transform="rotate(270)" />
-      </g>
+      {/* 매장 지붕 및 외곽선 */}
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      {/* 십자가(진단/의사 기호) */}
+      <line x1="12" y1="9" x2="12" y2="17" />
+      <line x1="8" y1="13" x2="16" y2="13" />
     </svg>
   );
 }

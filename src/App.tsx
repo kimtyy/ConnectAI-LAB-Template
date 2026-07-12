@@ -1,88 +1,40 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
   useMotionTemplate,
+  AnimatePresence,
 } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { ScrambleIn } from './components/ScrambleText';
 import { ConnectAILabLogo } from './components/ConnectAILabLogo';
-import PayPalCheckoutButton from './components/payment/PayPalCheckoutButton';
-import TossCheckoutButton from './components/payment/TossCheckoutButton';
-import { useAuth } from './contexts/AuthContext';
-import { createOrder } from './lib/firestore';
-import { PRODUCTS } from './lib/paypal';
-import { TOSS_PRODUCTS } from './lib/toss';
 import { VIDEO_URLS } from './config/videos';
 import { SITE_CONFIG } from './config/content';
 
 export default function App() {
   const [entranceComplete, setEntranceComplete] = useState(false);
-  const { user } = useAuth();
 
-  /* ── PayPal 결제 완료 → Firestore 저장 ── */
-  const handlePayPalSuccess = useCallback(
-    async (details: any, productId: string, productName: string, amount: string) => {
-      const orderId = details.id || `pp_${Date.now()}`;
-      try {
-        await createOrder({
-          id: orderId,
-          userId: user?.uid || 'anonymous',
-          productId,
-          productName,
-          amount: parseFloat(amount),
-          currency: 'USD',
-          status: 'completed',
-          paypalOrderId: orderId,
-          paypalPayerId: details.payer?.payer_id || '',
-        });
-        console.log('[Firestore] Order saved:', orderId);
-        alert(`✅ 결제 완료! Order: ${orderId}`);
-      } catch (err) {
-        console.error('[Firestore] Failed to save order:', err);
-        alert(`결제는 완료되었지만 기록 저장에 실패했습니다. Order: ${orderId}`);
-      }
-    },
-    [user]
-  );
+  /* ── Beta Modal & Code States ── */
+  const [betaModalOpen, setBetaModalOpen] = useState(false);
+  const [inviteCode, setInviteCode] = useState('');
+  const [betaStatus, setBetaStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  /* ── Hero video mouse-scrub ── */
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const targetTimeRef = useRef(0);
-  const isSeekingRef = useRef(false);
-
-  const handleSeeked = useCallback(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    isSeekingRef.current = false;
-    if (Math.abs(video.currentTime - targetTimeRef.current) > 0.01) {
-      isSeekingRef.current = true;
-      video.currentTime = targetTimeRef.current;
+  const handleBetaSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (inviteCode.trim().toUpperCase() === 'BETA2026') {
+      setBetaStatus('success');
+    } else {
+      setBetaStatus('error');
     }
-  }, []);
+  };
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const video = heroVideoRef.current;
-      if (!video || !video.duration) return;
-      const deltaX = e.movementX;
-      const sensitivity = 0.8;
-      const change = (deltaX / window.innerWidth) * video.duration * sensitivity;
-      targetTimeRef.current = Math.max(
-        0,
-        Math.min(video.duration, targetTimeRef.current + change)
-      );
-      if (!isSeekingRef.current) {
-        isSeekingRef.current = true;
-        video.currentTime = targetTimeRef.current;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const resetBetaModal = () => {
+    setBetaModalOpen(false);
+    setInviteCode('');
+    setBetaStatus('idle');
+  };
 
   /* ── Entrance delay ── */
   useEffect(() => {
@@ -109,23 +61,20 @@ export default function App() {
   const { hero, cinematic, metrics, technology, architecture, footer } = SITE_CONFIG;
 
   return (
-    <div style={{ fontFamily: '"Space Mono", monospace' }}>
+    <div style={{ fontFamily: '"Space Mono", monospace' }} className="bg-black text-white min-h-screen">
       <Navbar entranceComplete={entranceComplete} />
 
       {/* ════════════════ SECTION 1: HERO ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
-        {/* Video background (mouse-scrubbed) */}
-        {VIDEO_URLS.hero && (
-          <video
-            ref={heroVideoRef}
-            src={VIDEO_URLS.hero}
-            className="absolute inset-0 w-full h-full object-cover"
-            playsInline
-            muted
-            preload="auto"
-            onSeeked={handleSeeked}
-          />
-        )}
+        {/* Hero image background */}
+        <img
+          src="/hero-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Store Dashboard Background"
+        />
+
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
 
         {/* Dot grid overlay */}
         <div
@@ -133,7 +82,7 @@ export default function App() {
           style={{
             backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
             backgroundSize: '24px 24px',
-            opacity: 0.05,
+            opacity: 0.03,
           }}
         />
 
@@ -146,9 +95,9 @@ export default function App() {
             className="uppercase select-none"
             style={{
               fontFamily: '"Anton SC", sans-serif',
-              fontSize: 'clamp(120px, 30vw, 521px)',
+              fontSize: 'clamp(80px, 20vw, 360px)',
               letterSpacing: '-4px',
-              opacity: 0.1,
+              opacity: 0.08,
               background:
                 'radial-gradient(circle, rgba(142,127,148,0) 0%, #8E7F94 70%)',
               WebkitBackgroundClip: 'text',
@@ -173,10 +122,10 @@ export default function App() {
 
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             {/* Left column */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 items-start">
               <h1
-                className="text-white font-light leading-[0.95] tracking-[-0.03em]"
-                style={{ fontSize: 'clamp(40px, 10vw, 100px)' }}
+                className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-md"
+                style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
               >
                 <ScrambleIn text={hero.titleLeft[0]} delay={200} triggered={entranceComplete} />
                 <br />
@@ -184,7 +133,7 @@ export default function App() {
               </h1>
 
               <motion.p
-                className="max-w-sm text-[13px] sm:text-[15px] text-white/60 leading-relaxed"
+                className="max-w-sm text-[13px] sm:text-[15px] text-white/70 leading-relaxed drop-shadow-sm"
                 initial={{ opacity: 0, y: 25 }}
                 animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -195,12 +144,27 @@ export default function App() {
               >
                 {hero.description}
               </motion.p>
+
+              {/* Beta Register CTA button */}
+              <motion.button
+                className="mt-6 px-8 py-3.5 bg-[#0064FF] text-white font-semibold rounded-full hover:bg-blue-600 active:scale-95 transition-all text-[14px] cursor-pointer drop-shadow-lg"
+                onClick={() => setBetaModalOpen(true)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.9,
+                  ease: [0.215, 0.61, 0.355, 1.0],
+                  delay: 0.4,
+                }}
+              >
+                베타 무료로 시작하기
+              </motion.button>
             </div>
 
             {/* Right heading */}
             <h1
-              className="text-white font-light leading-[0.95] tracking-[-0.03em] text-left md:text-right"
-              style={{ fontSize: 'clamp(40px, 10vw, 100px)' }}
+              className="text-white font-light leading-[0.95] tracking-[-0.03em] text-left md:text-right drop-shadow-md"
+              style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
             >
               <ScrambleIn text={hero.titleRight[0]} delay={700} triggered={entranceComplete} />
               <br />
@@ -236,10 +200,13 @@ export default function App() {
           }}
         />
 
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
+
         {/* 3D text content */}
         <div className="relative z-20 max-w-5xl mx-auto" style={{ perspective: 400 }}>
           <motion.p
-            className="font-sans font-normal text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] text-white leading-[1.35] tracking-[-0.02em] select-none px-6 sm:px-12 text-center"
+            className="font-sans font-normal text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] text-white leading-[1.35] tracking-[-0.02em] select-none px-6 sm:px-12 text-center drop-shadow-md"
             style={{
               transform: transform3D,
               opacity: textOpacity,
@@ -264,6 +231,9 @@ export default function App() {
           />
         )}
 
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/70 z-10" />
+
         <div className="relative z-20 pt-32 pb-32 px-6 max-w-6xl mx-auto w-full">
           <motion.p
             className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center"
@@ -285,12 +255,12 @@ export default function App() {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <div
-                  className="text-white font-light tracking-[-0.04em] leading-none"
+                  className="text-white font-light tracking-[-0.04em] leading-none drop-shadow-md"
                   style={{ fontSize: 'clamp(48px, 10vw, 96px)' }}
                 >
                   {m.value}
                 </div>
-                <div className="text-white/40 text-[13px] sm:text-[15px] mt-4 tracking-wide">
+                <div className="text-white/50 text-[13px] sm:text-[15px] mt-4 tracking-wide drop-shadow-sm">
                   {m.label}
                 </div>
               </motion.div>
@@ -313,10 +283,13 @@ export default function App() {
           />
         )}
 
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/70 z-10" />
+
         <div className="relative z-20 flex flex-col flex-1 px-8 sm:px-12 md:px-16 py-12 sm:py-16">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
             <motion.h2
-              className="text-white font-light leading-[0.95] tracking-[-0.03em]"
+              className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-md"
               style={{ fontSize: 'clamp(36px, 8vw, 72px)' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -329,7 +302,7 @@ export default function App() {
             </motion.h2>
 
             <motion.p
-              className="text-white/50 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2"
+              className="text-white/60 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2 drop-shadow-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.2 }}
@@ -356,10 +329,10 @@ export default function App() {
                 transition={{ duration: 0.7, delay: i * 0.1 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2">
+                <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 drop-shadow-md">
                   {f.title}
                 </h3>
-                <p className="text-white/40 text-[12px] sm:text-[14px] leading-relaxed">
+                <p className="text-white/50 text-[12px] sm:text-[14px] leading-relaxed drop-shadow-sm">
                   {f.desc}
                 </p>
               </motion.div>
@@ -426,163 +399,157 @@ export default function App() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <p className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8">
-              Pricing
+              요금제 안내
             </p>
             <h2
               className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-6"
               style={{ fontSize: 'clamp(28px, 6vw, 56px)' }}
             >
-              Choose Your Plan
+              매장닥터 플랜 선택
             </h2>
-            <p className="text-white/45 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto">
-              Select the neural interface access tier that fits your needs.
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0064FF]/10 border border-[#0064FF]/30 text-[#0064FF] text-[12px] font-semibold mb-6">
+              🎁 베타 테스트 기간 전체 무료 이용 가능
+            </div>
+            <p className="text-white/50 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto">
+              사장님의 매장 규모와 필요 기능에 맞춰 가장 효율적인 플랜을 선택하세요.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* ── Basic ── */}
             <motion.div
-              className="border border-white/10 rounded-2xl p-8 flex flex-col"
+              className="border border-white/10 rounded-2xl p-8 flex flex-col relative"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0 }}
               viewport={{ once: true, amount: 0.3 }}
             >
+              <div className="absolute top-4 right-4">
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
+              </div>
               <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Basic</p>
               <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">$29.99</span>
-                <span className="text-white/30 text-[14px]">/one-time</span>
+                <span className="text-white text-[42px] font-light tracking-tight">9,900원</span>
+                <span className="text-white/30 text-[14px]">/월</span>
               </div>
-              <p className="text-white/40 text-[13px] leading-relaxed mb-8">
-                Single user license for personal neural mapping.
+              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+                매장 1개의 매출/매입 기초 관리와 기본 손익 분석을 제공합니다.
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Basic neural mapping
+                  <span className="text-[#0064FF]">✓</span> 영수증/POS 사진 분석
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Cognitive load tracking
+                  <span className="text-[#0064FF]">✓</span> 기초 매출·매입 장부 자동화
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Monthly reports
+                  <span className="text-[#0064FF]">✓</span> 월간 기본 정산서 제공
                 </li>
               </ul>
-              <div className="flex flex-col gap-3">
-                <PayPalCheckoutButton
-                  product={PRODUCTS[0]}
-                  onSuccess={(details) => handlePayPalSuccess(details, PRODUCTS[0].id, PRODUCTS[0].name, PRODUCTS[0].price)}
-                  onError={(err) => console.error('PayPal error:', err)}
-                />
-                <TossCheckoutButton
-                  product={TOSS_PRODUCTS[0]}
-                  onError={(err) => console.error('Toss error:', err)}
-                />
-              </div>
+              <button
+                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
+              >
+                무료 체험 시작하기
+              </button>
             </motion.div>
 
             {/* ── Pro (Featured) ── */}
             <motion.div
-              className="border border-white/25 rounded-2xl p-8 flex flex-col relative bg-white/[0.03]"
+              className="border border-[#0064FF]/40 rounded-2xl p-8 flex flex-col relative bg-white/[0.02]"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <span className="bg-white text-black text-[11px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full">
+                <span className="bg-[#0064FF] text-white text-[11px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full">
                   Most Popular
                 </span>
               </div>
+              <div className="absolute top-4 right-4">
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
+              </div>
               <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Pro</p>
               <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">$99.99</span>
-                <span className="text-white/30 text-[14px]">/one-time</span>
+                <span className="text-white text-[42px] font-light tracking-tight">19,900원</span>
+                <span className="text-white/30 text-[14px]">/월</span>
               </div>
-              <p className="text-white/40 text-[13px] leading-relaxed mb-8">
-                Full neural-AI interface with real-time cognitive mapping.
+              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+                매장 1개의 전체 기능 활용 및 정교한 AI 경영 진단 보고서를 받아보실 수 있습니다.
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Everything in Basic
+                  <span className="text-[#0064FF]">✓</span> Basic의 모든 기능 제공
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Real-time cognitive mapping
+                  <span className="text-[#0064FF]">✓</span> AI 상권 및 영업 진단 분석
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Signal isolation engine
+                  <span className="text-[#0064FF]">✓</span> 실시간 원가율 및 마진 추적
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Priority support
+                  <span className="text-[#0064FF]">✓</span> 다음 달 예측 분석 보고서
                 </li>
               </ul>
-              <div className="flex flex-col gap-3">
-                <PayPalCheckoutButton
-                  product={PRODUCTS[1]}
-                  onSuccess={(details) => handlePayPalSuccess(details, PRODUCTS[1].id, PRODUCTS[1].name, PRODUCTS[1].price)}
-                  onError={(err) => console.error('PayPal error:', err)}
-                />
-                <TossCheckoutButton
-                  product={TOSS_PRODUCTS[1]}
-                  onError={(err) => console.error('Toss error:', err)}
-                />
-              </div>
+              <button
+                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-blue-500/20"
+              >
+                무료 체험 시작하기
+              </button>
             </motion.div>
 
-            {/* ── Enterprise ── */}
+            {/* ── Premium ── */}
             <motion.div
-              className="border border-white/10 rounded-2xl p-8 flex flex-col"
+              className="border border-white/10 rounded-2xl p-8 flex flex-col relative"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Enterprise</p>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">Custom</span>
+              <div className="absolute top-4 right-4">
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
               </div>
-              <p className="text-white/40 text-[13px] leading-relaxed mb-8">
-                Unlimited neural endpoints for your entire organization.
+              <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Premium</p>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-white text-[42px] font-light tracking-tight">29,900원</span>
+                <span className="text-white/30 text-[14px]">/월</span>
+              </div>
+              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+                다매장 운영 점주님 또는 프랜차이즈 본사를 위한 통합 경영 리포트를 제공합니다.
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Everything in Pro
+                  <span className="text-[#0064FF]">✓</span> Pro의 모든 기능 제공
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Unlimited neural endpoints
+                  <span className="text-[#0064FF]">✓</span> 무제한 다매장 연결 및 비교 분석
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Custom API integration
-                </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-white/30">✓</span> Dedicated support team
+                  <span className="text-[#0064FF]">✓</span> 전담 매니저 매칭 및 맞춤 지원
                 </li>
               </ul>
-              <div className="flex flex-col gap-3">
-                <TossCheckoutButton
-                  product={TOSS_PRODUCTS[2]}
-                  onError={(err) => console.error('Toss error:', err)}
-                />
-                <a
-                  href="mailto:contact@connectailab.com"
-                  className="w-full max-w-md mx-auto h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 border border-white/20 text-white/70 hover:bg-white/5 transition-colors"
-                >
-                  Contact Sales
-                </a>
-              </div>
+              <button
+                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
+              >
+                무료 체험 시작하기
+              </button>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* ════════════════ FOOTER ════════════════ */}
-      <footer className="bg-black overflow-hidden">
+      <footer className="bg-black overflow-hidden border-t border-white/5">
         <div className="flex flex-col md:flex-row min-h-[400px]">
           {/* Left: Video */}
           <div className="md:w-1/2 h-[300px] md:h-auto relative">
             {VIDEO_URLS.footer ? (
               <video
                 src={VIDEO_URLS.footer}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover opacity-50"
                 autoPlay
                 muted
                 loop
@@ -591,6 +558,7 @@ export default function App() {
             ) : (
               <div className="absolute inset-0 bg-white/5" />
             )}
+            <div className="absolute inset-0 bg-black/40" />
           </div>
 
           {/* Right: Content */}
@@ -613,6 +581,102 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* ── Beta Register Modal ── */}
+      <AnimatePresence>
+        {betaModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="w-full max-w-md bg-[#111] border border-white/10 rounded-2xl p-8 relative overflow-hidden"
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', duration: 0.5 }}
+            >
+              {/* Close button */}
+              <button
+                onClick={resetBetaModal}
+                className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors bg-transparent border-none text-[20px] cursor-pointer"
+              >
+                &times;
+              </button>
+
+              {betaStatus === 'idle' && (
+                <form onSubmit={handleBetaSubmit} className="flex flex-col gap-5">
+                  <div>
+                    <h3 className="text-white text-[20px] font-medium mb-2">베타 테스터 신청</h3>
+                    <p className="text-white/50 text-[13px] leading-relaxed">
+                      매장닥터 베타 서비스 참여를 위해 발급받으신 초대코드를 입력해 주세요. (기본 코드: BETA2026)
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <input
+                      type="text"
+                      placeholder="초대코드 입력"
+                      value={inviteCode}
+                      onChange={(e) => setInviteCode(e.target.value)}
+                      className="w-full h-[48px] bg-white/5 border border-white/10 rounded-lg px-4 text-white text-[15px] focus:outline-none focus:border-[#0064FF] transition-colors"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full h-[48px] bg-[#0064FF] hover:bg-blue-600 text-white rounded-lg font-medium text-[15px] cursor-pointer active:scale-[0.98] transition-all border-none"
+                  >
+                    코드 확인
+                  </button>
+                </form>
+              )}
+
+              {betaStatus === 'success' && (
+                <div className="flex flex-col items-center text-center py-4 gap-4">
+                  <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center text-emerald-400 text-[24px]">
+                    ✓
+                  </div>
+                  <div>
+                    <h3 className="text-white text-[20px] font-medium mb-2">인증 성공!</h3>
+                    <p className="text-white/50 text-[13px] leading-relaxed">
+                      매장닥터 베타 테스터 등록이 완료되었습니다.<br />
+                      환영합니다! 지금 바로 모든 기능을 자유롭게 테스트해 보세요.
+                    </p>
+                  </div>
+                  <button
+                    onClick={resetBetaModal}
+                    className="w-full h-[48px] bg-white text-black hover:bg-white/90 rounded-lg font-medium text-[15px] cursor-pointer active:scale-[0.98] transition-all mt-2 border-none"
+                  >
+                    시작하기
+                  </button>
+                </div>
+              )}
+
+              {betaStatus === 'error' && (
+                <div className="flex flex-col items-center text-center py-4 gap-4">
+                  <div className="w-12 h-12 bg-rose-500/10 border border-rose-500/30 rounded-full flex items-center justify-center text-rose-400 text-[24px]">
+                    !
+                  </div>
+                  <div>
+                    <h3 className="text-white text-[20px] font-medium mb-2">인증 실패</h3>
+                    <p className="text-white/50 text-[13px] leading-relaxed">
+                      초대코드가 올바르지 않습니다.<br />
+                      정확한 코드를 다시 확인 후 입력해 주세요.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setBetaStatus('idle')}
+                    className="w-full h-[48px] bg-white/10 hover:bg-white/15 text-white rounded-lg font-medium text-[15px] cursor-pointer active:scale-[0.98] transition-all mt-2 border-none"
+                  >
+                    다시 입력하기
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

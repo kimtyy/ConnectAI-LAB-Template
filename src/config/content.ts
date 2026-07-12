@@ -6,83 +6,83 @@
 
 export const SITE_CONFIG = {
   // 브랜드
-  brandName: 'Connect AI LAB',
-  copyright: '© 2026 AI CITY BUILDERS. All rights reserved.',
+  brandName: '매장닥터',
+  copyright: '© 2026 매장닥터. All rights reserved.',
 
   // 히어로 섹션
   hero: {
-    titleLeft: ['Brain', 'And Body'],
-    titleRight: ['One', 'Network'],
-    watermark: 'TRANSCENDENCE',
+    titleLeft: ['내 가게', '잘 가고 있나?'],
+    titleRight: ['매장', '닥터'],
+    watermark: 'MAEJANG DOCTOR',
     description:
-      'Built at the intersection of neuroscience and artificial intelligence. Connect AI LAB continuously maps neural pathways, cognitive load, and physiological states into a single adaptive intelligence layer.',
+      '매일 쏟아지는 영수증과 POS 마감정산서, 이제 사진 한 장만 찍으세요. AI가 자동으로 파싱하여 완벽한 매출/매입 장부와 월말 결산보고서를 완성합니다.',
   },
 
-  // 시네마틱 텍스트 섹션
+  // 시네마틱 텍스트 섹션 (차별화 문구)
   cinematic: {
-    text: 'A neural-AI interface built on the architecture of the human nervous system. Connect AI LAB translates synaptic activity into computational intelligence. Every signal becomes measurable, structured, and visible. It continuously reconstructs internal state as a dynamic neural map. Biological noise is filtered into actionable cognitive patterns.',
+    text: '캐시노트는 매출만 잡아줍니다. 매장닥터는 매입까지 잡아서 진짜 순이익을 보여줍니다.',
   },
 
-  // 성능 지표 섹션
+  // 성능 지표 섹션 (사용자 피드백 반영)
   metrics: {
-    subtitle: 'Performance Metrics',
+    subtitle: '매장닥터 핵심 지표',
     items: [
-      { value: '2.4ms', label: 'Synaptic Latency' },
-      { value: '99.7%', label: 'Signal Accuracy' },
-      { value: '140B', label: 'Neural Parameters' },
+      { value: '1.2초', label: '평균 파싱 처리 시간' },
+      { value: 'Recruiting', label: '베타 테스터 모집 중' },
+      { value: '0원', label: '베타 기간 무료 이용' },
     ],
   },
 
-  // 기술 섹션
+  // 기술 섹션 (기능 소개)
   technology: {
-    title: ['Adaptive', 'Intelligence'],
+    title: ['스마트한', 'AI 매장 관리'],
     description:
-      'The system learns your neural baseline within 72 hours. From there, every cognitive state is mapped, predicted, and optimized in real time.',
+      '수기 작성이나 엑셀 입력 없이, 오직 카메라 촬영만으로 실시간 손익분석과 세무 준비가 완료됩니다.',
     features: [
       {
-        title: 'Cortical Mapping',
-        desc: 'Real-time spatial reconstruction of active neural regions.',
+        title: '📸 사진 한 장으로 입력',
+        desc: '영수증·POS 마감정산서 촬영하면 AI가 품목과 금액을 자동 파싱',
       },
       {
-        title: 'Signal Isolation',
-        desc: 'Separates cognitive intent from biological noise.',
+        title: '📊 실시간 손익 확인',
+        desc: '매출·매입·원가율·영업이익을 복잡한 수식 없이 한눈에 파악',
       },
       {
-        title: 'State Prediction',
-        desc: 'Anticipates cognitive transitions before they occur.',
+        title: '📋 월별 보고서 자동 완성',
+        desc: 'AI 기반 사업 진단, 다음 달 손익 예측 및 간편 PDF 저장 지원',
       },
       {
-        title: 'Loop Feedback',
-        desc: 'Closed-loop adjustment based on outcome correlation.',
+        title: '🔒 철저한 데이터 보안',
+        desc: '모든 금융 정보와 매장 자료는 암호화되어 안전하게 관리',
       },
     ],
   },
 
   // 아키텍처 섹션
   architecture: {
-    subtitle: 'Architecture',
-    heading: 'Three layers. Zero friction.',
+    subtitle: '스마트 워크플로우',
+    heading: '단 3단계. 마찰 없는 매장 관리.',
     description:
-      'Sensor layer captures raw bioelectric signals. Processing layer isolates intent. Interface layer delivers structured output to any connected system.',
+      '스마트폰으로 사진을 촬영하면 AI가 즉시 분석하고, 최종 완성된 결산 장부와 보고서 인터페이스를 실시간으로 받아보실 수 있습니다.',
     layers: [
-      { num: 1, name: 'Capture' },
-      { num: 2, name: 'Process' },
-      { num: 3, name: 'Interface' },
+      { num: 1, name: '촬영 (Capture)' },
+      { num: 2, name: 'AI 분석 (Process)' },
+      { num: 3, name: '장부 완성 (Interface)' },
     ],
   },
 
   // 푸터
   footer: {
     tagline:
-      'The next evolution of human-machine interaction. Built for those who refuse to be limited by biology alone.',
+      '소상공인 사장님들의 경영 파트너. 이제 진짜 순이익을 확인하고 더 스마트하게 매장을 운영하세요.',
   },
 
   // 네비게이션
   nav: {
     links: [
-      { label: 'About', scrollMultiplier: 1 },
-      { label: 'Metrics', scrollMultiplier: 2 },
+      { label: '소개', scrollMultiplier: 1 },
+      { label: '주요 지표', scrollMultiplier: 2 },
     ],
-    downloadLabel: 'Download',
+    downloadLabel: '앱 다운로드',
   },
 };

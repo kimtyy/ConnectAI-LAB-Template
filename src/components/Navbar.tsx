@@ -5,6 +5,7 @@ import { SquashHamburger } from './SquashHamburger';
 import { ScrambleText } from './ScrambleText';
 import { AuthModal } from './AuthModal';
 import { useAuth } from '../contexts/AuthContext';
+import { SITE_CONFIG } from '../config/content';
 
 interface NavbarProps {
   entranceComplete: boolean;
@@ -45,7 +46,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
             >
               <ConnectAILabLogo size={18} className="text-white" />
               <span className="text-[16px] font-medium tracking-tight text-white">
-                Connect AI LAB
+                {SITE_CONFIG.brandName}
               </span>
             </motion.div>
 
@@ -87,7 +88,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                       onMouseLeave={() => setAboutHovered(false)}
                       onClick={() => scrollTo(window.innerHeight)}
                     >
-                      <ScrambleText text="About" isHovered={aboutHovered} />
+                      <ScrambleText text="소개" isHovered={aboutHovered} />
                     </button>
                     <button
                       className="text-[16px] font-normal text-white/85 hover:text-white transition-colors cursor-pointer bg-transparent border-none"
@@ -95,7 +96,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                       onMouseLeave={() => setMetricsHovered(false)}
                       onClick={() => scrollTo(window.innerHeight * 2)}
                     >
-                      <ScrambleText text="Metrics" isHovered={metricsHovered} />
+                      <ScrambleText text="주요 지표" isHovered={metricsHovered} />
                     </button>
                   </motion.div>
                 )}
@@ -127,7 +128,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                     onClick={signOut}
                     className="text-[12px] text-white/40 hover:text-white/80 transition-colors cursor-pointer bg-transparent border-none ml-1"
                   >
-                    Sign Out
+                    로그아웃
                   </button>
                 </div>
               </div>
@@ -137,12 +138,13 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                 whileTap={{ scale: 0.97 }}
                 onClick={() => setAuthOpen(true)}
               >
-                Sign In
+                로그인
               </motion.button>
             )}
 
             {/* Download button */}
             <motion.button
+              onClick={() => alert("📱 앱 다운로드 기능은 정식 오픈 시 준비될 예정입니다. 베타 기간에는 웹으로 즉시 이용이 가능합니다!")}
               className="h-12 px-6 bg-white rounded-full flex items-center gap-2.5 cursor-pointer border-none"
               whileHover={{ scale: 1.03, backgroundColor: '#e2e2e6' }}
               whileTap={{ scale: 0.97 }}
@@ -151,7 +153,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
             >
               <i className="bi bi-apple text-black text-[16px]" />
               <span className="text-black text-[16px] font-medium">
-                <ScrambleText text="Download" isHovered={downloadHovered} />
+                <ScrambleText text="다운로드" isHovered={downloadHovered} />
               </span>
             </motion.button>
           </div>
@@ -169,7 +171,7 @@ export function Navbar({ entranceComplete }: NavbarProps) {
             >
               <ConnectAILabLogo size={14} className="text-white shrink-0" />
               <span className="text-[13px] font-medium tracking-tight text-white whitespace-nowrap">
-                Connect AI LAB
+                {SITE_CONFIG.brandName}
               </span>
             </motion.div>
 
@@ -206,13 +208,13 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                       className="text-[13px] font-normal text-white/85 cursor-pointer bg-transparent border-none"
                       onClick={() => scrollTo(window.innerHeight)}
                     >
-                      About
+                      소개
                     </button>
                     <button
                       className="text-[13px] font-normal text-white/85 cursor-pointer bg-transparent border-none"
                       onClick={() => scrollTo(window.innerHeight * 2)}
                     >
-                      Metrics
+                      주요 지표
                     </button>
                   </motion.div>
                 )}
@@ -243,17 +245,18 @@ export function Navbar({ entranceComplete }: NavbarProps) {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setAuthOpen(true)}
               >
-                Sign In
+                로그인
               </motion.button>
             )}
 
             {/* Download button */}
             <motion.button
+              onClick={() => alert("📱 앱 다운로드 기능은 정식 오픈 시 준비될 예정입니다. 베타 기간에는 웹으로 즉시 이용이 가능합니다!")}
               className="h-9 px-3.5 bg-white rounded-full flex items-center gap-1.5 cursor-pointer border-none shrink-0"
               whileTap={{ scale: 0.95 }}
             >
               <i className="bi bi-apple text-black text-[13px]" />
-              <span className="text-black text-[13px] font-medium">Download</span>
+              <span className="text-black text-[13px] font-medium">다운로드</span>
             </motion.button>
           </div>
         </div>
