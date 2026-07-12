@@ -9,9 +9,10 @@ import { SITE_CONFIG } from '../config/content';
 
 interface NavbarProps {
   entranceComplete: boolean;
+  onStartApp?: () => void;
 }
 
-export function Navbar({ entranceComplete }: NavbarProps) {
+export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [downloadHovered, setDownloadHovered] = useState(false);
   const [aboutHovered, setAboutHovered] = useState(false);
@@ -142,18 +143,18 @@ export function Navbar({ entranceComplete }: NavbarProps) {
               </motion.button>
             )}
 
-            {/* Download button */}
+            {/* Download/Start App button */}
             <motion.button
-              onClick={() => alert("📱 앱 다운로드 기능은 정식 오픈 시 준비될 예정입니다. 베타 기간에는 웹으로 즉시 이용이 가능합니다!")}
+              onClick={onStartApp}
               className="h-12 px-6 bg-white rounded-full flex items-center gap-2.5 cursor-pointer border-none"
               whileHover={{ scale: 1.03, backgroundColor: '#e2e2e6' }}
               whileTap={{ scale: 0.97 }}
               onMouseEnter={() => setDownloadHovered(true)}
               onMouseLeave={() => setDownloadHovered(false)}
             >
-              <i className="bi bi-apple text-black text-[16px]" />
+              <i className="bi bi-play-circle text-black text-[16px]" />
               <span className="text-black text-[16px] font-medium">
-                <ScrambleText text="다운로드" isHovered={downloadHovered} />
+                <ScrambleText text="앱 시작하기" isHovered={downloadHovered} />
               </span>
             </motion.button>
           </div>
@@ -249,14 +250,14 @@ export function Navbar({ entranceComplete }: NavbarProps) {
               </motion.button>
             )}
 
-            {/* Download button */}
+            {/* Download/Start App button */}
             <motion.button
-              onClick={() => alert("📱 앱 다운로드 기능은 정식 오픈 시 준비될 예정입니다. 베타 기간에는 웹으로 즉시 이용이 가능합니다!")}
+              onClick={onStartApp}
               className="h-9 px-3.5 bg-white rounded-full flex items-center gap-1.5 cursor-pointer border-none shrink-0"
               whileTap={{ scale: 0.95 }}
             >
-              <i className="bi bi-apple text-black text-[13px]" />
-              <span className="text-black text-[13px] font-medium">다운로드</span>
+              <i className="bi bi-play-circle text-black text-[13px]" />
+              <span className="text-black text-[13px] font-medium">앱 시작하기</span>
             </motion.button>
           </div>
         </div>

@@ -71,7 +71,7 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: '"Space Mono", monospace' }} className="bg-black text-white min-h-screen">
-      <Navbar entranceComplete={entranceComplete} />
+      <Navbar entranceComplete={entranceComplete} onStartApp={() => setBetaModalOpen(true)} />
 
       {/* ════════════════ SECTION 1: HERO ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
@@ -418,7 +418,7 @@ export default function App() {
                 <span className="text-white/30 text-[14px]">/월</span>
               </div>
               <p className="text-white/50 text-[13px] leading-relaxed mb-8">
-                매장 1개의 매출/매입 기초 관리와 기본 손익 분석을 제공합니다.
+                매장 1개, OCR 월 100건
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
@@ -432,7 +432,7 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
               >
                 무료 체험 시작하기
@@ -461,7 +461,7 @@ export default function App() {
                 <span className="text-white/30 text-[14px]">/월</span>
               </div>
               <p className="text-white/50 text-[13px] leading-relaxed mb-8">
-                매장 1개의 전체 기능 활용 및 정교한 AI 경영 진단 보고서를 받아보실 수 있습니다.
+                매장 1개, OCR 월 300건 + AI 진단
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
@@ -478,7 +478,7 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-blue-500/20"
               >
                 무료 체험 시작하기
@@ -502,21 +502,21 @@ export default function App() {
                 <span className="text-white/30 text-[14px]">/월</span>
               </div>
               <p className="text-white/50 text-[13px] leading-relaxed mb-8">
-                다매장 운영 점주님 또는 프랜차이즈 본사를 위한 통합 경영 리포트를 제공합니다.
+                매장 1개, OCR 월 1,000건 + 전체 기능
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
                   <span className="text-[#0064FF]">✓</span> Pro의 모든 기능 제공
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 무제한 다매장 연결 및 비교 분석
+                  <span className="text-[#0064FF]">✓</span> 대용량 영수증 우선 파싱
                 </li>
                 <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 전담 매니저 매칭 및 맞춤 지원
+                  <span className="text-[#0064FF]">✓</span> 무제한 데이터 보존 기능
                 </li>
               </ul>
               <button
-                onClick={() => alert("🎁 베타 서비스 운영 기간으로 현재 무료 체험이 가능합니다!\n\n별도의 결제 정보 등록 없이 즉시 이용하실 수 있습니다.")}
+                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
               >
                 무료 체험 시작하기
