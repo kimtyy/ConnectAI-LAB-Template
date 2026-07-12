@@ -28,7 +28,7 @@ export const SITE_CONFIG = {
     subtitle: '매장닥터 핵심 지표',
     items: [
       { value: '1.2초', label: '평균 파싱 처리 시간' },
-      { value: 'Recruiting', label: '베타 테스터 모집 중' },
+      { value: '모집 중', label: '베타 테스터 모집 중' },
       { value: '0원', label: '베타 기간 무료 이용' },
     ],
   },

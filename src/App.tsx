@@ -10,7 +10,6 @@ import {
 import { Navbar } from './components/Navbar';
 import { ScrambleIn } from './components/ScrambleText';
 import { ConnectAILabLogo } from './components/ConnectAILabLogo';
-import { VIDEO_URLS } from './config/videos';
 import { SITE_CONFIG } from './config/content';
 
 export default function App() {
@@ -35,6 +34,16 @@ export default function App() {
     setInviteCode('');
     setBetaStatus('idle');
   };
+
+  /* ── Auto Redirect on Successful Beta code ── */
+  useEffect(() => {
+    if (betaStatus === 'success') {
+      const timer = setTimeout(() => {
+        window.location.href = "https://store-doctor-lilac.vercel.app";
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [betaStatus]);
 
   /* ── Entrance delay ── */
   useEffect(() => {
@@ -179,17 +188,12 @@ export default function App() {
         ref={section2Ref}
         className="relative h-screen h-[100dvh] flex items-center justify-center overflow-hidden"
       >
-        {/* Video background */}
-        {VIDEO_URLS.section2 && (
-          <video
-            src={VIDEO_URLS.section2}
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        )}
+        {/* Image background */}
+        <img
+          src="/receipt-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Receipt Processing Background"
+        />
 
         {/* Top gradient overlay */}
         <div
@@ -201,7 +205,7 @@ export default function App() {
         />
 
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60 z-10" />
+        <div className="absolute inset-0 bg-black/75 z-10" />
 
         {/* 3D text content */}
         <div className="relative z-20 max-w-5xl mx-auto" style={{ perspective: 400 }}>
@@ -218,22 +222,8 @@ export default function App() {
       </section>
 
       {/* ════════════════ SECTION 3: METRICS ════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video background */}
-        {VIDEO_URLS.metrics && (
-          <video
-            src={VIDEO_URLS.metrics}
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        )}
-
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/70 z-10" />
-
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
+        {/* Video background has been removed to keep high contrast text on clean dark theme */}
         <div className="relative z-20 pt-32 pb-32 px-6 max-w-6xl mx-auto w-full">
           <motion.p
             className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center"
@@ -271,20 +261,15 @@ export default function App() {
 
       {/* ════════════════ SECTION 4: TECHNOLOGY ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
-        {/* Video background */}
-        {VIDEO_URLS.technology && (
-          <video
-            src={VIDEO_URLS.technology}
-            className="absolute inset-0 w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        )}
+        {/* Image background */}
+        <img
+          src="/receipt-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Receipt Database Processing Background"
+        />
 
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/70 z-10" />
+        <div className="absolute inset-0 bg-black/80 z-10" />
 
         <div className="relative z-20 flex flex-col flex-1 px-8 sm:px-12 md:px-16 py-12 sm:py-16">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
@@ -544,20 +529,13 @@ export default function App() {
       {/* ════════════════ FOOTER ════════════════ */}
       <footer className="bg-black overflow-hidden border-t border-white/5">
         <div className="flex flex-col md:flex-row min-h-[400px]">
-          {/* Left: Video */}
+          {/* Left: Image */}
           <div className="md:w-1/2 h-[300px] md:h-auto relative">
-            {VIDEO_URLS.footer ? (
-              <video
-                src={VIDEO_URLS.footer}
-                className="absolute inset-0 w-full h-full object-cover opacity-50"
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
-            ) : (
-              <div className="absolute inset-0 bg-white/5" />
-            )}
+            <img
+              src="/footer-bg.png"
+              className="absolute inset-0 w-full h-full object-cover opacity-55"
+              alt="Warm Cozy Store Ambiance"
+            />
             <div className="absolute inset-0 bg-black/40" />
           </div>
 
@@ -640,15 +618,18 @@ export default function App() {
                   <div>
                     <h3 className="text-white text-[20px] font-medium mb-2">인증 성공!</h3>
                     <p className="text-white/50 text-[13px] leading-relaxed">
-                      매장닥터 베타 테스터 등록이 완료되었습니다.<br />
-                      환영합니다! 지금 바로 모든 기능을 자유롭게 테스트해 보세요.
+                      매장닥터 베타 테스터 인증이 완료되었습니다.<br />
+                      잠시 후 회원가입 페이지로 자동으로 이동합니다...
                     </p>
                   </div>
                   <button
-                    onClick={resetBetaModal}
-                    className="w-full h-[48px] bg-white text-black hover:bg-white/90 rounded-lg font-medium text-[15px] cursor-pointer active:scale-[0.98] transition-all mt-2 border-none"
+                    onClick={() => {
+                      window.location.href = "https://store-doctor-lilac.vercel.app";
+                    }}
+                    className="w-full h-[48px] bg-white text-black hover:bg-white/90 rounded-lg font-medium text-[15px] cursor-pointer active:scale-[0.98] transition-all mt-2 border-none flex items-center justify-center gap-2"
                   >
-                    시작하기
+                    <span>회원가입하러 이동하기</span>
+                    <span>➔</span>
                   </button>
                 </div>
               )}
