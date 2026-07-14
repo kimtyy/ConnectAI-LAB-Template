@@ -75,15 +75,19 @@ export default function App() {
 
       {/* ════════════════ SECTION 1: HERO ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
-        {/* Hero image background */}
-        <img
-          src="/hero-bg.png"
+        {/* Hero looping video background */}
+        <video
+          src="/hero.mp4"
+          poster="/hero-bg.png"
           className="absolute inset-0 w-full h-full object-cover"
-          alt="Store Dashboard Background"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
 
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60 z-10" />
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
 
         {/* Dot grid overlay */}
         <div
@@ -101,7 +105,7 @@ export default function App() {
           style={{ paddingTop: 50 }}
         >
           <span
-            className="uppercase select-none"
+            className="uppercase select-none drop-shadow-lg"
             style={{
               fontFamily: '"Anton SC", sans-serif',
               fontSize: 'clamp(80px, 20vw, 360px)',
@@ -133,7 +137,7 @@ export default function App() {
             {/* Left column */}
             <div className="flex flex-col gap-4 items-start">
               <h1
-                className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-md"
+                className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-lg"
                 style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
               >
                 <ScrambleIn text={hero.titleLeft[0]} delay={200} triggered={entranceComplete} />
@@ -142,7 +146,7 @@ export default function App() {
               </h1>
 
               <motion.p
-                className="max-w-sm text-[13px] sm:text-[15px] text-white/70 leading-relaxed drop-shadow-sm"
+                className="max-w-sm text-[13px] sm:text-[15px] text-white/90 font-medium leading-relaxed drop-shadow-lg"
                 initial={{ opacity: 0, y: 25 }}
                 animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -172,7 +176,7 @@ export default function App() {
 
             {/* Right heading */}
             <h1
-              className="text-white font-light leading-[0.95] tracking-[-0.03em] text-left md:text-right drop-shadow-md"
+              className="text-white font-light leading-[0.95] tracking-[-0.03em] text-left md:text-right drop-shadow-lg"
               style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
             >
               <ScrambleIn text={hero.titleRight[0]} delay={700} triggered={entranceComplete} />
@@ -188,11 +192,15 @@ export default function App() {
         ref={section2Ref}
         className="relative h-screen h-[100dvh] flex items-center justify-center overflow-hidden"
       >
-        {/* Image background */}
-        <img
-          src="/receipt-bg.png"
+        {/* Looping video background for receipt processing */}
+        <video
+          src="/receipt.mp4"
+          poster="/receipt-bg.png"
           className="absolute inset-0 w-full h-full object-cover"
-          alt="Receipt Processing Background"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
 
         {/* Top gradient overlay */}
@@ -204,13 +212,13 @@ export default function App() {
           }}
         />
 
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/75 z-10" />
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
 
         {/* 3D text content */}
         <div className="relative z-20 max-w-5xl mx-auto" style={{ perspective: 400 }}>
           <motion.p
-            className="font-sans font-normal text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] text-white leading-[1.35] tracking-[-0.02em] select-none px-6 sm:px-12 text-center drop-shadow-md"
+            className="font-sans font-normal text-[22px] sm:text-[30px] md:text-[36px] lg:text-[42px] text-white leading-[1.35] tracking-[-0.02em] select-none px-6 sm:px-12 text-center drop-shadow-lg"
             style={{
               transform: transform3D,
               opacity: textOpacity,
@@ -222,11 +230,20 @@ export default function App() {
       </section>
 
       {/* ════════════════ SECTION 3: METRICS ════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050505]">
-        {/* Video background has been removed to keep high contrast text on clean dark theme */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Bright cafe counter image background */}
+        <img
+          src="/cafe-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Bright Cafe Counter Background"
+        />
+
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+
         <div className="relative z-20 pt-32 pb-32 px-6 max-w-6xl mx-auto w-full">
           <motion.p
-            className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center"
+            className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center drop-shadow-lg font-semibold"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
@@ -245,12 +262,12 @@ export default function App() {
                 viewport={{ once: true, amount: 0.3 }}
               >
                 <div
-                  className="text-white font-light tracking-[-0.04em] leading-none drop-shadow-md"
+                  className="text-white font-light tracking-[-0.04em] leading-none drop-shadow-lg"
                   style={{ fontSize: 'clamp(48px, 10vw, 96px)' }}
                 >
                   {m.value}
                 </div>
-                <div className="text-white/50 text-[13px] sm:text-[15px] mt-4 tracking-wide drop-shadow-sm">
+                <div className="text-white/90 text-[13px] sm:text-[15px] mt-4 tracking-wide drop-shadow-lg font-medium">
                   {m.label}
                 </div>
               </motion.div>
@@ -261,20 +278,20 @@ export default function App() {
 
       {/* ════════════════ SECTION 4: TECHNOLOGY ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
-        {/* Image background */}
+        {/* Bright kitchen background image */}
         <img
-          src="/receipt-bg.png"
+          src="/kitchen-bg.png"
           className="absolute inset-0 w-full h-full object-cover"
-          alt="Receipt Database Processing Background"
+          alt="Bright Restaurant Kitchen Background"
         />
 
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/80 z-10" />
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
 
         <div className="relative z-20 flex flex-col flex-1 px-8 sm:px-12 md:px-16 py-12 sm:py-16">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
             <motion.h2
-              className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-md"
+              className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-lg"
               style={{ fontSize: 'clamp(36px, 8vw, 72px)' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -287,7 +304,7 @@ export default function App() {
             </motion.h2>
 
             <motion.p
-              className="text-white/60 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2 drop-shadow-sm"
+              className="text-white/90 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2 drop-shadow-lg font-medium"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.2 }}
@@ -314,10 +331,10 @@ export default function App() {
                 transition={{ duration: 0.7, delay: i * 0.1 }}
                 viewport={{ once: true, amount: 0.3 }}
               >
-                <h3 className="text-white text-[14px] sm:text-[16px] font-normal mb-2 drop-shadow-md">
+                <h3 className="text-white text-[14px] sm:text-[16px] font-semibold mb-2 drop-shadow-lg">
                   {f.title}
                 </h3>
-                <p className="text-white/50 text-[12px] sm:text-[14px] leading-relaxed drop-shadow-sm">
+                <p className="text-white/80 text-[12px] sm:text-[14px] leading-relaxed drop-shadow-lg font-normal">
                   {f.desc}
                 </p>
               </motion.div>
@@ -327,24 +344,34 @@ export default function App() {
       </section>
 
       {/* ════════════════ SECTION 5: ARCHITECTURE ════════════════ */}
-      <section className="min-h-screen flex items-center justify-center bg-black">
-        <div className="max-w-3xl mx-auto px-6 py-32 text-center">
+      <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+        {/* Bright app screen background image */}
+        <img
+          src="/app-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Bright Smartphone App Screen Background"
+        />
+
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+
+        <div className="relative z-20 max-w-3xl mx-auto px-6 py-32 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0 }}
             viewport={{ once: true, amount: 0.4 }}
           >
-            <p className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8">
+            <p className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
               {architecture.subtitle}
             </p>
             <h2
-              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-10"
+              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-10 drop-shadow-lg"
               style={{ fontSize: 'clamp(28px, 6vw, 56px)' }}
             >
               {architecture.heading}
             </h2>
-            <p className="text-white/45 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto">
+            <p className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
               {architecture.description}
             </p>
           </motion.div>
@@ -359,12 +386,12 @@ export default function App() {
             {architecture.layers.map((l) => (
               <div
                 key={l.num}
-                className="w-full max-w-md h-[72px] border border-white/10 rounded-lg flex items-center justify-between px-6"
+                className="w-full max-w-md h-[72px] border border-white/20 bg-black/10 backdrop-blur-md rounded-lg flex items-center justify-between px-6 drop-shadow-lg"
               >
-                <span className="text-white/30 text-[12px] tracking-[0.15em] uppercase">
+                <span className="text-white/60 text-[12px] tracking-[0.15em] uppercase font-semibold">
                   Layer {l.num}
                 </span>
-                <span className="text-white text-[16px] sm:text-[18px] font-light">
+                <span className="text-white text-[16px] sm:text-[18px] font-medium">
                   {l.name}
                 </span>
               </div>
@@ -374,8 +401,18 @@ export default function App() {
       </section>
 
       {/* ════════════════ SECTION 6: PRICING ════════════════ */}
-      <section className="min-h-screen bg-black py-32 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative min-h-screen bg-black py-32 px-6 overflow-hidden">
+        {/* Bright store front image background */}
+        <img
+          src="/store-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Bright Storefront Background"
+        />
+
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+
+        <div className="relative z-20 max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -383,19 +420,19 @@ export default function App() {
             transition={{ duration: 1.0 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="text-white/40 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8">
+            <p className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
               요금제 안내
             </p>
             <h2
-              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-6"
+              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-6 drop-shadow-lg"
               style={{ fontSize: 'clamp(28px, 6vw, 56px)' }}
             >
               매장닥터 플랜 선택
             </h2>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0064FF]/10 border border-[#0064FF]/30 text-[#0064FF] text-[12px] font-semibold mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0064FF]/20 border border-[#0064FF]/40 text-white text-[12px] font-bold mb-6 drop-shadow-lg">
               🎁 베타 테스트 기간 전체 무료 이용 가능
             </div>
-            <p className="text-white/50 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto">
+            <p className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
               사장님의 매장 규모와 필요 기능에 맞춰 가장 효율적인 플랜을 선택하세요.
             </p>
           </motion.div>
@@ -403,32 +440,32 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* ── Basic ── */}
             <motion.div
-              className="border border-white/10 rounded-2xl p-8 flex flex-col relative"
+              className="border border-white/20 bg-black/40 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
               </div>
-              <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Basic</p>
+              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Basic</p>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-white text-[42px] font-light tracking-tight">9,900원</span>
-                <span className="text-white/30 text-[14px]">/월</span>
+                <span className="text-white/60 text-[14px]">/월</span>
               </div>
-              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
                 매장 1개, OCR 월 100건
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 영수증/POS 사진 분석
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 영수증/POS 사진 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 기초 매출·매입 장부 자동화
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 기초 매출·매입 장부 자동화
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 월간 기본 정산서 제공
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 월간 기본 정산서 제공
                 </li>
               </ul>
               <button
@@ -441,7 +478,7 @@ export default function App() {
 
             {/* ── Pro (Featured) ── */}
             <motion.div
-              className="border border-[#0064FF]/40 rounded-2xl p-8 flex flex-col relative bg-white/[0.02]"
+              className="border border-[#0064FF]/60 bg-black/50 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
@@ -453,28 +490,28 @@ export default function App() {
                 </span>
               </div>
               <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
               </div>
-              <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Pro</p>
+              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Pro</p>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-white text-[42px] font-light tracking-tight">19,900원</span>
-                <span className="text-white/30 text-[14px]">/월</span>
+                <span className="text-white/60 text-[14px]">/월</span>
               </div>
-              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
                 매장 1개, OCR 월 300건 + AI 진단
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> Basic의 모든 기능 제공
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> Basic의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> AI 상권 및 영업 진단 분석
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> AI 상권 및 영업 진단 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 실시간 원가율 및 마진 추적
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 실시간 원가율 및 마진 추적
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 다음 달 예측 분석 보고서
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 다음 달 예측 분석 보고서
                 </li>
               </ul>
               <button
@@ -487,32 +524,32 @@ export default function App() {
 
             {/* ── Premium ── */}
             <motion.div
-              className="border border-white/10 rounded-2xl p-8 flex flex-col relative"
+              className="border border-white/20 bg-black/40 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded">베타 무료</span>
+                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
               </div>
-              <p className="text-white/40 text-[12px] tracking-[0.15em] uppercase mb-3">Premium</p>
+              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Premium</p>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-white text-[42px] font-light tracking-tight">29,900원</span>
-                <span className="text-white/30 text-[14px]">/월</span>
+                <span className="text-white/60 text-[14px]">/월</span>
               </div>
-              <p className="text-white/50 text-[13px] leading-relaxed mb-8">
+              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
                 매장 1개, OCR 월 1,000건 + 전체 기능
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> Pro의 모든 기능 제공
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> Pro의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 대용량 영수증 우선 파싱
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 대용량 영수증 우선 파싱
                 </li>
-                <li className="flex items-center gap-3 text-white/60 text-[13px]">
-                  <span className="text-[#0064FF]">✓</span> 무제한 데이터 보존 기능
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                  <span className="text-[#0064FF] font-bold">✓</span> 무제한 데이터 보존 기능
                 </li>
               </ul>
               <button
@@ -527,35 +564,45 @@ export default function App() {
       </section>
 
       {/* ════════════════ FOOTER ════════════════ */}
-      <footer className="bg-black overflow-hidden border-t border-white/5">
+      <footer className="bg-black overflow-hidden border-t border-white/10 relative z-20">
         <div className="flex flex-col md:flex-row min-h-[400px]">
-          {/* Left: Image */}
+          {/* Left: Food Preparation Image */}
           <div className="md:w-1/2 h-[300px] md:h-auto relative">
             <img
-              src="/footer-bg.png"
-              className="absolute inset-0 w-full h-full object-cover opacity-55"
-              alt="Warm Cozy Store Ambiance"
+              src="/food-bg.png"
+              className="absolute inset-0 w-full h-full object-cover opacity-60"
+              alt="Bright Culinary Plating Food Background"
             />
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-black/20" />
           </div>
 
-          {/* Right: Content */}
-          <div className="md:w-1/2 flex flex-col justify-between p-10 sm:p-16">
-            <div>
-              <div className="flex items-center gap-2.5 mb-8">
-                <ConnectAILabLogo size={18} className="text-white/70" />
-                <span className="text-[15px] font-medium text-white/70 tracking-tight">
-                  {SITE_CONFIG.brandName}
-                </span>
+          {/* Right: Content with Smiling Owner Background */}
+          <div className="md:w-1/2 flex flex-col justify-between p-10 sm:p-16 relative overflow-hidden bg-black/50">
+            {/* Blended background owner image */}
+            <img
+              src="/owner-bg.png"
+              className="absolute inset-0 w-full h-full object-cover opacity-15"
+              alt="Smiling Owner Background"
+            />
+            <div className="absolute inset-0 bg-black/35 z-10" />
+
+            <div className="relative z-20 flex flex-col justify-between h-full flex-1">
+              <div>
+                <div className="flex items-center gap-2.5 mb-8">
+                  <ConnectAILabLogo size={18} className="text-white/80" />
+                  <span className="text-[16px] font-medium text-white/85 tracking-tight drop-shadow-lg">
+                    {SITE_CONFIG.brandName}
+                  </span>
+                </div>
+                <p className="text-white/80 text-[14px] sm:text-[15px] leading-relaxed max-w-sm drop-shadow-lg font-medium">
+                  {footer.tagline}
+                </p>
               </div>
-              <p className="text-white/40 text-[14px] sm:text-[15px] leading-relaxed max-w-sm">
-                {footer.tagline}
+
+              <p className="text-white/40 text-[12px] mt-12 drop-shadow-sm font-semibold">
+                {SITE_CONFIG.copyright}
               </p>
             </div>
-
-            <p className="text-white/25 text-[12px] mt-12">
-              {SITE_CONFIG.copyright}
-            </p>
           </div>
         </div>
       </footer>
