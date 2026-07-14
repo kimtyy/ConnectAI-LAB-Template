@@ -67,7 +67,7 @@ export default function App() {
   const transform3D = useMotionTemplate`rotateX(24deg) translateY(${yScaleValue}px) translateZ(15px)`;
 
   /* ── Destructure config for readability ── */
-  const { hero, cinematic, metrics, technology, architecture, footer } = SITE_CONFIG;
+  const { hero, cinematic, technology, architecture, footer } = SITE_CONFIG;
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -229,52 +229,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ════════════════ SECTION 3: METRICS ════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        {/* Bright cafe counter image background */}
-        <img
-          src="/cafe-bg.png"
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Bright Cafe Counter Background"
-        />
 
-        {/* Adjusted light dark overlay for brightness */}
-        <div className="absolute inset-0 bg-black/20 z-10" />
-
-        <div className="relative z-20 pt-32 pb-32 px-6 max-w-6xl mx-auto w-full">
-          <motion.p
-            className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center drop-shadow-lg font-semibold"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.2 }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {metrics.subtitle}
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 text-center">
-            {metrics.items.map((m, i) => (
-              <motion.div
-                key={m.label}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: i * 0.15 }}
-                viewport={{ once: true, amount: 0.3 }}
-              >
-                <div
-                  className="text-white font-light tracking-[-0.04em] leading-none drop-shadow-lg"
-                  style={{ fontSize: 'clamp(48px, 10vw, 96px)' }}
-                >
-                  {m.value}
-                </div>
-                <div className="text-white/90 text-[13px] sm:text-[15px] mt-4 tracking-wide drop-shadow-lg font-medium">
-                  {m.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ════════════════ SECTION 4: TECHNOLOGY ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
@@ -410,7 +365,7 @@ export default function App() {
         />
 
         {/* Adjusted light dark overlay for brightness */}
-        <div className="absolute inset-0 bg-black/20 z-10" />
+        <div className="absolute inset-0 bg-black/25 z-10" />
 
         <div className="relative z-20 max-w-6xl mx-auto">
           <motion.div
@@ -420,16 +375,16 @@ export default function App() {
             transition={{ duration: 1.0 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
+            <p className="text-white/80 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
               요금제 안내
             </p>
             <h2
-              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-6 drop-shadow-lg"
-              style={{ fontSize: 'clamp(28px, 6vw, 56px)' }}
+              className="text-white font-semibold leading-[1.15] tracking-[-0.02em] mb-6 drop-shadow-lg"
+              style={{ fontSize: 'clamp(24px, 5vw, 44px)' }}
             >
               매장닥터 플랜 선택
             </h2>
-            <p className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
+            <p className="text-white/95 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
               사장님의 매장 규모와 필요 기능에 맞춰 가장 효율적인 플랜을 선택하세요.
             </p>
           </motion.div>
@@ -437,34 +392,34 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {/* ── Basic ── */}
             <motion.div
-              className="border border-white/20 bg-black/40 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-lg"
+              className="border border-white/20 bg-black/75 backdrop-blur-md rounded-2xl p-6 sm:p-8 flex flex-col relative drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Basic</p>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">9,900원</span>
-                <span className="text-white/60 text-[14px]">/월</span>
+              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Basic</p>
+              <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
+                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">9,900원</span>
+                <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
+              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
                 매장 1개, OCR 월 100건
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 영수증/POS 사진 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 기초 매출·매입 장부 자동화
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 월간 기본 정산서 제공
                 </li>
               </ul>
               <button
                 onClick={() => setBetaModalOpen(true)}
-                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
+                className="w-full h-[50px] rounded-lg font-semibold text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer drop-shadow-lg"
               >
                 선택하기
               </button>
@@ -472,42 +427,42 @@ export default function App() {
 
             {/* ── Pro (Featured) ── */}
             <motion.div
-              className="border border-[#0064FF]/60 bg-black/50 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-xl"
+              className="border border-[#0064FF]/60 bg-black/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 flex flex-col relative drop-shadow-xl"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <span className="bg-[#0064FF] text-white text-[11px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full">
+                <span className="bg-[#0064FF] text-white text-[11px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full drop-shadow-md">
                   Most Popular
                 </span>
               </div>
-              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Pro</p>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">19,900원</span>
-                <span className="text-white/60 text-[14px]">/월</span>
+              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Pro</p>
+              <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
+                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">19,900원</span>
+                <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
+              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
                 매장 1개, OCR 월 300건 + AI 진단
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> Basic의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> AI 상권 및 영업 진단 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 실시간 원가율 및 마진 추적
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 다음 달 예측 분석 보고서
                 </li>
               </ul>
               <button
                 onClick={() => setBetaModalOpen(true)}
-                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-blue-500/20"
+                className="w-full h-[50px] rounded-lg font-semibold text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-blue-500/20 drop-shadow-lg"
               >
                 선택하기
               </button>
@@ -515,34 +470,34 @@ export default function App() {
 
             {/* ── Premium ── */}
             <motion.div
-              className="border border-white/20 bg-black/40 backdrop-blur-md rounded-2xl p-8 flex flex-col relative drop-shadow-lg"
+              className="border border-white/20 bg-black/75 backdrop-blur-md rounded-2xl p-6 sm:p-8 flex flex-col relative drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Premium</p>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-white text-[42px] font-light tracking-tight">29,900원</span>
-                <span className="text-white/60 text-[14px]">/월</span>
+              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Premium</p>
+              <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
+                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">29,900원</span>
+                <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/90 text-[13px] leading-relaxed mb-8 font-medium">
+              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
                 매장 1개, OCR 월 1,000건 + 전체 기능
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> Pro의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 대용량 영수증 우선 파싱
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
                   <span className="text-[#0064FF] font-bold">✓</span> 무제한 데이터 보존 기능
                 </li>
               </ul>
               <button
                 onClick={() => setBetaModalOpen(true)}
-                className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
+                className="w-full h-[50px] rounded-lg font-semibold text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer drop-shadow-lg"
               >
                 선택하기
               </button>

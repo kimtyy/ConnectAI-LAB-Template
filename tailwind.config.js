@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Space Mono"', 'monospace'],
-        serif: ['"Space Mono"', 'monospace'],
-        mono: ['"Space Mono"', 'monospace'],
+        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+        serif: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+        mono: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
       },
     },
   },
