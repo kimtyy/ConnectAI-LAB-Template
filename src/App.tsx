@@ -67,7 +67,7 @@ export default function App() {
   const transform3D = useMotionTemplate`rotateX(24deg) translateY(${yScaleValue}px) translateZ(15px)`;
 
   /* ── Destructure config for readability ── */
-  const { hero, cinematic, technology, architecture, footer } = SITE_CONFIG;
+  const { hero, cinematic, metrics, technology, architecture, footer } = SITE_CONFIG;
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -118,6 +118,7 @@ export default function App() {
               WebkitTextFillColor: 'transparent',
               color: 'transparent',
               lineHeight: 1,
+              textShadow: '0 2px 8px rgba(0,0,0,0.8)',
             }}
           >
             {hero.watermark}
@@ -138,7 +139,7 @@ export default function App() {
             <div className="flex flex-col gap-4 items-start">
               <h1
                 className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-lg"
-                style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
+                style={{ fontSize: 'clamp(40px, 8vw, 88px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
               >
                 <ScrambleIn text={hero.titleLeft[0]} delay={200} triggered={entranceComplete} />
                 <br />
@@ -147,6 +148,7 @@ export default function App() {
 
               <motion.p
                 className="max-w-sm text-[13px] sm:text-[15px] text-white/90 font-medium leading-relaxed drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
                 initial={{ opacity: 0, y: 25 }}
                 animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -161,6 +163,7 @@ export default function App() {
               {/* Register CTA button */}
               <motion.button
                 className="mt-6 px-8 py-3.5 bg-[#0064FF] text-white font-semibold rounded-full hover:bg-blue-600 active:scale-95 transition-all text-[14px] cursor-pointer drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
                 onClick={() => setBetaModalOpen(true)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
@@ -177,7 +180,7 @@ export default function App() {
             {/* Right heading */}
             <h1
               className="text-white font-light leading-[0.95] tracking-[-0.03em] text-left md:text-right drop-shadow-lg"
-              style={{ fontSize: 'clamp(40px, 8vw, 88px)' }}
+              style={{ fontSize: 'clamp(40px, 8vw, 88px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
             >
               <ScrambleIn text={hero.titleRight[0]} delay={700} triggered={entranceComplete} />
               <br />
@@ -222,6 +225,7 @@ export default function App() {
             style={{
               transform: transform3D,
               opacity: textOpacity,
+              textShadow: '0 2px 8px rgba(0,0,0,0.8)',
             }}
           >
             {cinematic.text}
@@ -229,10 +233,61 @@ export default function App() {
         </div>
       </section>
 
+      {/* ════════════════ SECTION 3: METRICS (RESTORED) ════════════════ */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+        {/* Bright cafe counter image background */}
+        <img
+          src="/cafe-bg.png"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Bright Cafe Counter Background"
+        />
+
+        {/* Adjusted light dark overlay for brightness */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+
+        <div className="relative z-20 pt-32 pb-32 px-6 max-w-6xl mx-auto w-full">
+          <motion.p
+            className="text-white/80 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-20 text-center drop-shadow-lg font-semibold"
+            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            {metrics.subtitle}
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 text-center">
+            {metrics.items.map((m, i) => (
+              <motion.div
+                key={m.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.15 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <div
+                  className="text-white font-semibold tracking-[-0.04em] leading-none drop-shadow-lg"
+                  style={{ fontSize: 'clamp(28px, 5vw, 56px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
+                  {m.value}
+                </div>
+                <div 
+                  className="text-white/90 text-[13px] sm:text-[15px] mt-4 tracking-wide drop-shadow-lg font-medium"
+                  style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
+                  {m.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
 
       {/* ════════════════ SECTION 4: TECHNOLOGY ════════════════ */}
-      <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
+      <section className="relative min-h-[500px] flex flex-col justify-center overflow-hidden py-32">
         {/* Bright kitchen background image */}
         <img
           src="/kitchen-bg.png"
@@ -243,11 +298,11 @@ export default function App() {
         {/* Adjusted light dark overlay for brightness */}
         <div className="absolute inset-0 bg-black/20 z-10" />
 
-        <div className="relative z-20 flex flex-col flex-1 px-8 sm:px-12 md:px-16 py-12 sm:py-16">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+        <div className="relative z-20 flex flex-col px-8 sm:px-12 md:px-16 max-w-6xl mx-auto w-full">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
             <motion.h2
-              className="text-white font-light leading-[0.95] tracking-[-0.03em] drop-shadow-lg"
-              style={{ fontSize: 'clamp(36px, 8vw, 72px)' }}
+              className="text-white font-semibold leading-[0.95] tracking-[-0.03em] drop-shadow-lg"
+              style={{ fontSize: 'clamp(36px, 8vw, 72px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0 }}
@@ -259,7 +314,8 @@ export default function App() {
             </motion.h2>
 
             <motion.p
-              className="text-white/90 text-[13px] sm:text-[15px] leading-relaxed max-w-xs md:text-right md:pt-2 drop-shadow-lg font-medium"
+              className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-sm md:text-right md:pt-4 drop-shadow-lg font-medium"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.2 }}
@@ -268,28 +324,32 @@ export default function App() {
               {technology.description}
             </motion.p>
           </div>
+        </div>
+      </section>
 
-          <div className="flex-1" />
-
+      {/* ════════════════ SECTION 4B: INDEPENDENT FEATURES CARD GRID (WHITE THEME) ════════════════ */}
+      <section className="bg-white py-24 px-6 md:px-12 relative z-20">
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.3 }}
-            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1.0 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {technology.features.map((f, i) => (
               <motion.div
                 key={f.title}
+                className="bg-white border border-zinc-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
-                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true, amount: 0.2 }}
               >
-                <h3 className="text-white text-[14px] sm:text-[16px] font-semibold mb-2 drop-shadow-lg">
+                <h3 className="text-zinc-900 text-[17px] sm:text-[19px] font-bold tracking-tight">
                   {f.title}
                 </h3>
-                <p className="text-white/80 text-[12px] sm:text-[14px] leading-relaxed drop-shadow-lg font-normal">
+                <p className="text-zinc-600 text-[14px] sm:text-[15px] leading-relaxed font-normal">
                   {f.desc}
                 </p>
               </motion.div>
@@ -299,59 +359,87 @@ export default function App() {
       </section>
 
       {/* ════════════════ SECTION 5: ARCHITECTURE ════════════════ */}
-      <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
-        {/* Bright app screen background image */}
+      <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden py-32">
+        {/* App background image */}
         <img
           src="/app-bg.png"
           className="absolute inset-0 w-full h-full object-cover"
-          alt="Bright Smartphone App Screen Background"
+          alt="App Background"
         />
 
-        {/* Adjusted light dark overlay for brightness */}
-        <div className="absolute inset-0 bg-black/20 z-10" />
+        {/* Adjusted dark overlay to highlight phone mockup */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
 
-        <div className="relative z-20 max-w-3xl mx-auto px-6 py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0 }}
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            <p className="text-white/60 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
-              {architecture.subtitle}
-            </p>
-            <h2
-              className="text-white font-light leading-[1.15] tracking-[-0.02em] mb-10 drop-shadow-lg"
-              style={{ fontSize: 'clamp(28px, 6vw, 56px)' }}
+        <div className="relative z-20 max-w-6xl mx-auto px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Column: Text & Steps */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.0 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
-              {architecture.heading}
-            </h2>
-            <p className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
-              {architecture.description}
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="mt-20 flex flex-col items-center gap-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 0.4 }}
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            {architecture.layers.map((l) => (
-              <div
-                key={l.num}
-                className="w-full max-w-md h-[72px] border border-white/20 bg-black/10 backdrop-blur-md rounded-lg flex items-center justify-between px-6 drop-shadow-lg"
+              <p 
+                className="text-white/80 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-6 drop-shadow-lg font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
               >
-                <span className="text-white/60 text-[12px] tracking-[0.15em] uppercase font-semibold">
-                  Layer {l.num}
-                </span>
-                <span className="text-white text-[16px] sm:text-[18px] font-medium">
-                  {l.name}
-                </span>
+                {architecture.subtitle}
+              </p>
+              <h2
+                className="text-white font-semibold leading-[1.15] tracking-[-0.02em] mb-8 drop-shadow-lg"
+                style={{ fontSize: 'clamp(28px, 5vw, 52px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                {architecture.heading}
+              </h2>
+              <p 
+                className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mb-12 drop-shadow-lg font-medium"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                {architecture.description}
+              </p>
+
+              {/* 1단계 / 2단계 / 3단계 List */}
+              <div className="flex flex-col gap-4 max-w-md">
+                {architecture.layers.map((l) => (
+                  <div
+                    key={l.num}
+                    className="w-full h-[72px] border border-white/20 bg-black/25 backdrop-blur-md rounded-lg flex items-center justify-between px-6 drop-shadow-lg"
+                  >
+                    <span className="text-white/80 text-[13px] tracking-[0.1em] font-semibold">
+                      {l.num}단계
+                    </span>
+                    <span className="text-white text-[15px] sm:text-[17px] font-semibold">
+                      {l.name}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+
+            {/* Right Column: Phone Mockup Frame */}
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.0, delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {/* Premium Phone Frame */}
+              <div className="relative w-[260px] h-[530px] bg-zinc-900 rounded-[44px] p-3 border-4 border-zinc-700 shadow-2xl overflow-hidden shrink-0">
+                {/* Speaker/Camera Notch */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-4 bg-zinc-800 rounded-full z-30" />
+                
+                {/* Screen */}
+                <div className="w-full h-full rounded-[32px] overflow-hidden relative bg-black">
+                  <img
+                    src="/dashboard.jpg"
+                    className="w-full h-full object-cover"
+                    alt="매장닥터 대시보드 화면"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -364,8 +452,8 @@ export default function App() {
           alt="Bright Storefront Background"
         />
 
-        {/* Adjusted light dark overlay for brightness */}
-        <div className="absolute inset-0 bg-black/25 z-10" />
+        {/* Adjusted dark overlay for better pricing text contrast */}
+        <div className="absolute inset-0 bg-black/50 z-10" />
 
         <div className="relative z-20 max-w-6xl mx-auto">
           <motion.div
@@ -375,16 +463,22 @@ export default function App() {
             transition={{ duration: 1.0 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="text-white/80 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold">
+            <p 
+              className="text-white/80 text-[13px] sm:text-[14px] tracking-[0.2em] uppercase mb-8 drop-shadow-lg font-semibold"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+            >
               요금제 안내
             </p>
             <h2
               className="text-white font-semibold leading-[1.15] tracking-[-0.02em] mb-6 drop-shadow-lg"
-              style={{ fontSize: 'clamp(24px, 5vw, 44px)' }}
+              style={{ fontSize: 'clamp(24px, 5vw, 44px)', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
             >
               매장닥터 플랜 선택
             </h2>
-            <p className="text-white/95 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
+            <p 
+              className="text-white/95 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium"
+              style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+            >
               사장님의 매장 규모와 필요 기능에 맞춰 가장 효율적인 플랜을 선택하세요.
             </p>
           </motion.div>
@@ -398,22 +492,35 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Basic</p>
+              <p 
+                className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                Basic
+              </p>
               <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
-                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">9,900원</span>
+                <span 
+                  className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight"
+                  style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
+                  9,900원
+                </span>
                 <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
+              <p 
+                className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
                 매장 1개, OCR 월 100건
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 영수증/POS 사진 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 기초 매출·매입 장부 자동화
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 월간 기본 정산서 제공
                 </li>
               </ul>
@@ -438,25 +545,38 @@ export default function App() {
                   Most Popular
                 </span>
               </div>
-              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Pro</p>
+              <p 
+                className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                Pro
+              </p>
               <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
-                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">19,900원</span>
+                <span 
+                  className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight"
+                  style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
+                  19,900원
+                </span>
                 <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
+              <p 
+                className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
                 매장 1개, OCR 월 300건 + AI 진단
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> Basic의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
-                  <span className="text-[#0064FF] font-bold">✓</span> AI 상권 및 영업 진단 분석
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+                  <span className="text-[#0064FF] font-bold">✓</span> AI 영업 진단 분석
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 실시간 원가율 및 마진 추적
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 다음 달 예측 분석 보고서
                 </li>
               </ul>
@@ -476,22 +596,35 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <p className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Premium</p>
+              <p 
+                className="text-white/80 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
+                Premium
+              </p>
               <div className="flex items-baseline gap-1 mb-2 whitespace-nowrap">
-                <span className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight">29,900원</span>
+                <span 
+                  className="text-white text-[32px] sm:text-[38px] font-semibold tracking-tight"
+                  style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
+                  29,900원
+                </span>
                 <span className="text-white/80 text-[12px] sm:text-[14px]">/월</span>
               </div>
-              <p className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg">
+              <p 
+                className="text-white/95 text-[13px] leading-relaxed mb-8 font-medium drop-shadow-lg"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
                 매장 1개, OCR 월 1,000건 + 전체 기능
               </p>
               <ul className="flex flex-col gap-3 mb-10 flex-1">
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> Pro의 모든 기능 제공
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 대용량 영수증 우선 파싱
                 </li>
-                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg">
+                <li className="flex items-center gap-3 text-white/90 text-[13px] font-medium drop-shadow-lg" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
                   <span className="text-[#0064FF] font-bold">✓</span> 무제한 데이터 보존 기능
                 </li>
               </ul>
@@ -533,16 +666,25 @@ export default function App() {
               <div>
                 <div className="flex items-center gap-2.5 mb-8">
                   <ConnectAILabLogo size={18} className="text-white/80" />
-                  <span className="text-[16px] font-medium text-white/85 tracking-tight drop-shadow-lg">
+                  <span 
+                    className="text-[16px] font-medium text-white/85 tracking-tight drop-shadow-lg"
+                    style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                  >
                     {SITE_CONFIG.brandName}
                   </span>
                 </div>
-                <p className="text-white/80 text-[14px] sm:text-[15px] leading-relaxed max-w-sm drop-shadow-lg font-medium">
+                <p 
+                  className="text-white/80 text-[14px] sm:text-[15px] leading-relaxed max-w-sm drop-shadow-lg font-medium"
+                  style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+                >
                   {footer.tagline}
                 </p>
               </div>
 
-              <p className="text-white/40 text-[12px] mt-12 drop-shadow-sm font-semibold">
+              <p 
+                className="text-white/40 text-[12px] mt-12 drop-shadow-sm font-semibold"
+                style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
+              >
                 {SITE_CONFIG.copyright}
               </p>
             </div>
