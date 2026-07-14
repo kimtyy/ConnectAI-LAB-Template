@@ -70,7 +70,7 @@ export default function App() {
   const { hero, cinematic, metrics, technology, architecture, footer } = SITE_CONFIG;
 
   return (
-    <div style={{ fontFamily: '"Space Mono", monospace' }} className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen">
       <Navbar entranceComplete={entranceComplete} onStartApp={() => setBetaModalOpen(true)} />
 
       {/* ════════════════ SECTION 1: HERO ════════════════ */}
@@ -158,7 +158,7 @@ export default function App() {
                 {hero.description}
               </motion.p>
 
-              {/* Beta Register CTA button */}
+              {/* Register CTA button */}
               <motion.button
                 className="mt-6 px-8 py-3.5 bg-[#0064FF] text-white font-semibold rounded-full hover:bg-blue-600 active:scale-95 transition-all text-[14px] cursor-pointer drop-shadow-lg"
                 onClick={() => setBetaModalOpen(true)}
@@ -170,7 +170,7 @@ export default function App() {
                   delay: 0.4,
                 }}
               >
-                베타 무료로 시작하기
+                지금 시작하기
               </motion.button>
             </div>
 
@@ -429,9 +429,6 @@ export default function App() {
             >
               매장닥터 플랜 선택
             </h2>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0064FF]/20 border border-[#0064FF]/40 text-white text-[12px] font-bold mb-6 drop-shadow-lg">
-              🎁 베타 테스트 기간 전체 무료 이용 가능
-            </div>
             <p className="text-white/90 text-[15px] sm:text-[17px] leading-relaxed max-w-xl mx-auto drop-shadow-lg font-medium">
               사장님의 매장 규모와 필요 기능에 맞춰 가장 효율적인 플랜을 선택하세요.
             </p>
@@ -446,9 +443,6 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
-              </div>
               <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Basic</p>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-white text-[42px] font-light tracking-tight">9,900원</span>
@@ -469,10 +463,10 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
+                onClick={() => setBetaModalOpen(true)}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
               >
-                무료 체험 시작하기
+                선택하기
               </button>
             </motion.div>
 
@@ -488,9 +482,6 @@ export default function App() {
                 <span className="bg-[#0064FF] text-white text-[11px] font-bold tracking-[0.1em] uppercase px-4 py-1.5 rounded-full">
                   Most Popular
                 </span>
-              </div>
-              <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
               </div>
               <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Pro</p>
               <div className="flex items-baseline gap-1 mb-2">
@@ -515,10 +506,10 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
+                onClick={() => setBetaModalOpen(true)}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer shadow-lg shadow-blue-500/20"
               >
-                무료 체험 시작하기
+                선택하기
               </button>
             </motion.div>
 
@@ -530,9 +521,6 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="absolute top-4 right-4">
-                <span className="text-[10px] text-emerald-400 bg-emerald-500/20 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">베타 무료</span>
-              </div>
               <p className="text-white/60 text-[12px] tracking-[0.15em] uppercase mb-3 font-semibold">Premium</p>
               <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-white text-[42px] font-light tracking-tight">29,900원</span>
@@ -553,10 +541,10 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => alert("베타 기간 동안은 모든 플랜을 무료로 이용하실 수 있습니다!")}
+                onClick={() => setBetaModalOpen(true)}
                 className="w-full h-[50px] rounded-lg font-medium text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer"
               >
-                무료 체험 시작하기
+                선택하기
               </button>
             </motion.div>
           </div>
