@@ -9,10 +9,9 @@ import { SITE_CONFIG } from '../config/content';
 
 interface NavbarProps {
   entranceComplete: boolean;
-  onStartApp?: () => void;
 }
 
-export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
+export function Navbar({ entranceComplete }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [downloadHovered, setDownloadHovered] = useState(false);
   const [aboutHovered, setAboutHovered] = useState(false);
@@ -137,7 +136,7 @@ export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
               <motion.button
                 className="h-12 px-5 bg-white/10 backdrop-blur-md rounded-[14px] flex items-center gap-2 cursor-pointer border-none text-white/85 text-[15px] font-medium hover:bg-white/20 transition-colors"
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setAuthOpen(true)}
+                onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
               >
                 로그인
               </motion.button>
@@ -145,7 +144,7 @@ export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
 
             {/* Download/Start App button */}
             <motion.button
-              onClick={onStartApp}
+              onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
               className="h-12 px-6 bg-white rounded-full flex items-center gap-2.5 cursor-pointer border-none"
               whileHover={{ scale: 1.03, backgroundColor: '#e2e2e6' }}
               whileTap={{ scale: 0.97 }}
@@ -244,7 +243,7 @@ export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
               <motion.button
                 className="h-9 px-3 bg-white/15 backdrop-blur-md rounded-[10px] flex items-center cursor-pointer border-none text-white/85 text-[12px] font-medium"
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setAuthOpen(true)}
+                onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
               >
                 로그인
               </motion.button>
@@ -252,7 +251,7 @@ export function Navbar({ entranceComplete, onStartApp }: NavbarProps) {
 
             {/* Download/Start App button */}
             <motion.button
-              onClick={onStartApp}
+              onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
               className="h-9 px-3.5 bg-white rounded-full flex items-center gap-1.5 cursor-pointer border-none shrink-0"
               whileTap={{ scale: 0.95 }}
             >

@@ -71,7 +71,7 @@ export default function App() {
 
   return (
     <div className="bg-black text-white min-h-screen">
-      <Navbar entranceComplete={entranceComplete} onStartApp={() => setBetaModalOpen(true)} />
+      <Navbar entranceComplete={entranceComplete} />
 
       {/* ════════════════ SECTION 1: HERO ════════════════ */}
       <section className="relative h-screen h-[100dvh] flex flex-col overflow-hidden">
@@ -164,7 +164,7 @@ export default function App() {
               <motion.button
                 className="mt-6 px-8 py-3.5 bg-[#0064FF] text-white font-semibold rounded-full hover:bg-blue-600 active:scale-95 transition-all text-[14px] cursor-pointer drop-shadow-lg"
                 style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}
-                onClick={() => setBetaModalOpen(true)}
+                onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
                 initial={{ opacity: 0, y: 20 }}
                 animate={entranceComplete ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -525,7 +525,7 @@ export default function App() {
                 </li>
               </ul>
               <button
-                onClick={() => setBetaModalOpen(true)}
+                onClick={() => window.location.href = 'https://store-doctor-lilac.vercel.app/login'}
                 className="w-full h-[50px] rounded-lg font-semibold text-[15px] flex items-center justify-center gap-2 bg-[#0064FF] hover:bg-blue-600 text-white border-none active:scale-[0.98] transition-all cursor-pointer drop-shadow-lg"
               >
                 선택하기
