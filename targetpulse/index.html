@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TargetPulse | AI-Assisted Bio-DeepTech Target Profiling Engine</title>
+  <meta name="description" content="From 2 Days to 10 Seconds: Automated Target Feasibility Profiling. 단 하나의 유전자 심볼로 5대 공공 데이터베이스 실시간 통합 분석 및 실사 도시에(Dossier) 즉시 생성." />
+  
+  <!-- Favicon & Canonical -->
+  <link rel="icon" type="image/png" href="./assets/favicon.png" /><circle cx='50' cy='50' r='45' fill='%232563EB'/><path d='M30 50h40M50 30v40' stroke='white' stroke-width='10' stroke-linecap='round'/></svg>" />
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TargetPulse | Bio-DeepTech Target Profiling Engine" />
+  <meta property="og:description" content="From 2 Days to 10 Seconds: Automated Target Feasibility Profiling for Biotech R&D, Labs, and VCs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bio-deeptech.streamlit.app" />
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TargetPulse",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "Biotechnology Software",
+    "description": "AI-Assisted Bio-DeepTech Target Profiling Engine for automated drug discovery target feasibility analysis.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <div class="brand-symbol">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5 10 5 10-5-5-2.5-5 2.5z"/></svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-name">TargetPulse</span>
+          <span class="brand-tag">Bio-DeepTech Engine</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#roi" class="nav-link">시간 절감 ROI</a></li>
+          <li><a href="#solutions" class="nav-link">솔루션</a></li>
+          <li><a href="#architecture" class="nav-link">5대 DB 파이프라인</a></li>
+          <li><a href="#pricing" class="nav-link">요금제</a></li>
+          <li><a href="#faq" class="nav-link">자주 묻는 질문</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow">
+          Launch App
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-content">
+      <div class="pill-badge">
+        <span class="live-indicator"></span>
+        AI-Assisted Bio-DeepTech Target Profiling
+      </div>
+
+      <h1 class="hero-title">
+        From <span class="gradient-text">2 Days to 10 Seconds:</span><br />
+        Automated Target Feasibility Profiling
+      </h1>
+
+      <p class="hero-subtitle">
+        단 하나의 유전자 심볼로 <strong>UniProt 서열, AlphaFold 3D 구조, ChEMBL 고활성 저해제, OpenTargets 질환 연관 점수, PubMed 최신 문헌</strong>을 실시간 통합 분석하고 회의용 실사 도시에(Dossier)를 생성합니다.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg btn-glow">
+          Launch TargetPulse Web App 🚀
+        </a>
+        <a href="#roi" class="btn btn-secondary btn-lg">
+          ROI 비교 보기 &darr;
+        </a>
+      </div>
+
+      <div class="hero-meta-strip">
+        <div class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>5대 글로벌 바이오 DB 실시간 연동</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>별도 설치 없는 즉시 실행 SaaS</span>
+        </div>
+        <div class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span>인쇄용 완성형 HTML/PDF Dossier</span>
+        </div>
+      </div>
+
+      <!-- Live Mockup Preview -->
+      <div class="mockup-wrapper">
+        <div class="mockup-frame">
+          <div class="mockup-header">
+            <span class="window-dot" style="background: #EF4444;"></span>
+            <span class="window-dot" style="background: #F59E0B;"></span>
+            <span class="window-dot" style="background: #10B981;"></span>
+            <div class="window-url-bar">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              https://bio-deeptech.streamlit.app &bull; TargetPulse Enterprise Suite
+            </div>
+          </div>
+          <div class="mockup-body">
+            <!-- Mockup Quick Switcher -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 0.75rem; color: #94A3B8; text-transform: uppercase; font-weight: 700;">Live Demo Presets:</span>
+                <button class="demo-target-pill active" data-target="EGFR" style="background: #2563EB; color: white; border: none; padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">EGFR</button>
+                <button class="demo-target-pill" data-target="KRAS" style="background: rgba(255,255,255,0.08); color: #CBD5E1; border: 1px solid rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">KRAS</button>
+                <button class="demo-target-pill" data-target="BRAF" style="background: rgba(255,255,255,0.08); color: #CBD5E1; border: 1px solid rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; cursor: pointer;">BRAF</button>
+              </div>
+              <span style="font-size: 0.75rem; color: #10B981; font-family: monospace;">● QUERY STATUS: 200 OK (0.84s)</span>
+            </div>
+
+            <!-- Mockup Card Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 16px;">
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px;">
+                <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Target Symbol</div>
+                <div id="mockup-target-symbol" style="font-size: 1.2rem; font-weight: 800; color: #60A5FA;">EGFR</div>
+                <div id="mockup-target-name" style="font-size: 0.75rem; color: #CBD5E1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Epidermal growth factor receptor</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px;">
+                <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">UniProt / Length</div>
+                <div id="mockup-target-uniprot" style="font-size: 1.2rem; font-weight: 800; font-family: monospace; color: #FFFFFF;">P00533</div>
+                <div id="mockup-target-len" style="font-size: 0.75rem; color: #CBD5E1;">1,210 aa (Homo sapiens)</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px;">
+                <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">AlphaFold pLDDT</div>
+                <div id="mockup-target-plddt" style="font-size: 1.2rem; font-weight: 800; color: #10B981;">82.4 / 100</div>
+                <div style="font-size: 0.75rem; color: #CBD5E1;">High Confidence Backbone</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px;">
+                <div style="font-size: 0.7rem; color: #94A3B8; text-transform: uppercase;">Top Inhibitor IC50</div>
+                <div id="mockup-target-ic50" style="font-size: 1.2rem; font-weight: 800; color: #F59E0B; font-family: monospace;">0.500 nM</div>
+                <div id="mockup-target-disease" style="font-size: 0.75rem; color: #CBD5E1;">NSCLC Assoc: 0.841</div>
+              </div>
+            </div>
+
+            <!-- Mockup Bottom Bar -->
+            <div style="background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <span style="font-size: 0.85rem; color: #CBD5E1;">
+                📑 <strong>Automated Dossier Ready:</strong> 5개 섹션 통합 리포트 실시간 렌더링 완료
+              </span>
+              <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; font-size: 0.82rem; font-weight: 700; text-decoration: none;">
+                실제 앱에서 전체 3D 뷰어 확인하기 &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BEFORE vs AFTER ROI ==================== -->
+  <section id="roi" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Quantified Efficiency</span>
+        <h2 class="section-title">2영업일(16시간)의 수작업 검색을<br />10초 원클릭으로 대체</h2>
+        <p class="section-desc">
+          신약 타깃 후보를 검토할 때마다 5개 공공 웹사이트를 전전하며 엑셀에 옮겨 적던 비효율을 완전히 종식시킵니다.
+        </p>
+      </div>
+
+      <div class="roi-grid">
+        <!-- Conventional Before Card -->
+        <div class="roi-card roi-card-before">
+          <div>
+            <span class="roi-badge roi-badge-danger">Conventional (Before)</span>
+            <div class="roi-metric-number roi-metric-danger">16 Hours</div>
+            <div class="roi-metric-label">수동 개별 검색 및 보고서 취합 (약 2영업일)</div>
+            
+            <ul class="roi-step-list">
+              <li class="roi-step-item">
+                <span class="roi-step-icon">❌</span>
+                <span><strong>UniProt 수동 검색 (2.5h):</strong> Homo sapiens 표준 서열, 별칭, 기능 설명 복사</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">❌</span>
+                <span><strong>AlphaFold DB 탐색 (3.5h):</strong> PDB 다운로드, 로컬 뷰어 실행, pLDDT 신뢰도 캡처</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">❌</span>
+                <span><strong>ChEMBL 필터링 (4.0h):</strong> 수천 개 활성 데이터 중 IC50 정렬 및 상위 화학 구조 파싱</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">❌</span>
+                <span><strong>OpenTargets & PubMed (6.0h):</strong> 질환 연관 점수 조회, 최신 논문 5편 수동 서지 정리</span>
+              </li>
+            </ul>
+          </div>
+          <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(239,68,68,0.2); font-size: 0.85rem; color: #FCA5A5;">
+            결과: 포맷 불일치, 데이터 누락 가능성, 연구원 피로도 가중
+          </div>
+        </div>
+
+        <!-- TargetPulse After Card -->
+        <div class="roi-card roi-card-after">
+          <div>
+            <span class="roi-badge roi-badge-success">TargetPulse (After)</span>
+            <div class="roi-metric-number roi-metric-success">10 Seconds</div>
+            <div class="roi-metric-label">단일 유전자 심볼 입력 즉시 원클릭 Dossier 생성</div>
+            
+            <ul class="roi-step-list">
+              <li class="roi-step-item">
+                <span class="roi-step-icon">⚡</span>
+                <span><strong>동시 병렬 API 쿼리:</strong> REST & GraphQL을 통해 5대 공공 DB를 백엔드에서 1초 내 병렬 수집</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">⚡</span>
+                <span><strong>대화형 3D & 2D 구조화:</strong> py3Dmol 원자 좌표 및 RDKit 화학 구조식 실시간 시각화</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">⚡</span>
+                <span><strong>정량적 질환 연관성:</strong> OpenTargets Overall Score 기반 상위 10대 적응증 즉시 차트화</span>
+              </li>
+              <li class="roi-step-item">
+                <span class="roi-step-icon">⚡</span>
+                <span><strong>원클릭 Dossier Export:</strong> 회의용 및 인쇄용 완성형 HTML/PDF & Markdown 즉각 다운로드</span>
+              </li>
+            </ul>
+          </div>
+          <div style="margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(16,185,129,0.3); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 0.95rem; font-weight: 700; color: #6EE7B7;">시간 99.8% 단축 &bull; 휴먼 에러 제로</span>
+            <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.8rem;">
+              직접 체험하기 &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOLUTIONS FOR 3 AUDIENCES ==================== -->
+  <section id="solutions" class="section" style="background: rgba(11, 19, 43, 0.3);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Target Audience Solutions</span>
+        <h2 class="section-title">글로벌 제약·바이오 생태계를 위한<br />3대 맞춤형 타깃 실사 솔루션</h2>
+        <p class="section-desc">
+          초기 타깃 디스커버리 연구부터 투자 유치 및 기술이전(Licensing-in/out) 실사까지 필요한 모든 정보를 즉시 제공합니다.
+        </p>
+      </div>
+
+      <div class="solutions-grid">
+        <!-- Solution 1: Biotech R&D -->
+        <div class="solution-card">
+          <div>
+            <div class="solution-icon-box">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2v7.31M14 9.3V1.99M8.5 2h7M14 9.3a6.5 6.5 0 11-4 0M5.52 16h12.96"/></svg>
+            </div>
+            <div class="solution-target-label">Biotech R&D</div>
+            <h3 class="solution-card-title">타깃 기획 및 탐색 단계 선행 조사 시간 95% 단축</h3>
+            <p class="solution-card-desc">
+              신규 파이프라인 수립 및 약물 재창출(Drug Repurposing) 검토 시, 10개 이상의 후보 타깃을 단 몇 분 만에 교차 비교하여 연구 효율을 극대화합니다.
+            </p>
+          </div>
+          <ul class="solution-bullet-list">
+            <li class="solution-bullet-item">후보 타깃별 선행 저해제 IC50 수준 비교</li>
+            <li class="solution-bullet-item">AlphaFold 기반 결합 포켓 구조적 신뢰도 평가</li>
+            <li class="solution-bullet-item">연구팀 공유용 표준화된 Markdown Dossier 생성</li>
+          </ul>
+        </div>
+
+        <!-- Solution 2: Academic Labs -->
+        <div class="solution-card">
+          <div>
+            <div class="solution-icon-box" style="background: rgba(6, 182, 212, 0.15); border-color: rgba(6, 182, 212, 0.3); color: #38BDF8;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="solution-target-label">Academic Labs</div>
+            <h3 class="solution-card-title">연구과제 제안서 및 표적 유효성·구조 즉각 비교</h3>
+            <p class="solution-card-desc">
+              정부 국책과제 및 디스커버리 논문 작성 시 필요한 분자 구조 좌표, 아미노산 서열, 관련 질환 통계 및 PubMed 서지 정보를 실시간 확보합니다.
+            </p>
+          </div>
+          <ul class="solution-bullet-list">
+            <li class="solution-bullet-item">과제 계획서 첨부용 3D 분자 모델 캡처 지원</li>
+            <li class="solution-bullet-item">FASTA 서열 및 PDB 좌표 원클릭 다운로드</li>
+            <li class="solution-bullet-item">최신 5편의 인체 대상 핵심 문헌 즉시 인용</li>
+          </ul>
+        </div>
+
+        <!-- Solution 3: Life Science VCs & TTO -->
+        <div class="solution-card">
+          <div>
+            <div class="solution-icon-box" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); color: #34D399;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div class="solution-target-label">Life Science VCs & TTO</div>
+            <h3 class="solution-card-title">IR 심사 및 기술이전 검토를 위한 10초 팩트체크 실사</h3>
+            <p class="solution-card-desc">
+              바이오텍 투자 심사 및 대학 기술이전(TTO) 협상 시 피투자사의 주장 타깃에 대한 객관적인 글로벌 공공 데이터를 10초 만에 팩트체크합니다.
+            </p>
+          </div>
+          <ul class="solution-bullet-list">
+            <li class="solution-bullet-item">투자심의위원회 제출용 브리핑 HTML/PDF 출력</li>
+            <li class="solution-bullet-item">기존 승인 또는 개발 중인 경쟁 약물 결합력 파악</li>
+            <li class="solution-bullet-item">타깃-질환 연관성 종합 점수의 객관적 검증</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5 GLOBAL DATABASES ==================== -->
+  <section id="architecture" class="db-integration-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #60A5FA; text-transform: uppercase; letter-spacing: 0.1em;">Direct API Integration</span>
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-top: 6px;">글로벌 5대 바이오인포매틱스 데이터 소스 실시간 연동</h3>
+      </div>
+
+      <div class="db-grid">
+        <div class="db-card">
+          <div class="db-name">UniProt KB</div>
+          <div class="db-desc">인간 단백질 전장 서열 및 정밀 큐레이션 생물학적 기능</div>
+        </div>
+        <div class="db-card">
+          <div class="db-name">AlphaFold DB</div>
+          <div class="db-desc">DeepMind & EBI 실시간 3D 원자 구조 좌표 및 pLDDT 점수</div>
+        </div>
+        <div class="db-card">
+          <div class="db-name">ChEMBL</div>
+          <div class="db-desc">EMBL-EBI 활성 저해제 IC50 결합값 및 2D 화학 구조식</div>
+        </div>
+        <div class="db-card">
+          <div class="db-name">OpenTargets</div>
+          <div class="db-desc">유전체·임상시험·문헌 근거 종합 질환 연관성 점수</div>
+        </div>
+        <div class="db-card">
+          <div class="db-name">NCBI PubMed</div>
+          <div class="db-desc">인체 대상 최신 임상 및 디스커버리 논문 실시간 브리핑</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING SECTION ==================== -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Flexible B2B Plans</span>
+        <h2 class="section-title">연구실부터 엔터프라이즈 제약사까지<br />합리적인 SaaS 요금제</h2>
+        <p class="section-desc">
+          초기 타깃 팩트체크를 위한 무료 플랜부터 무제한 Dossier 출력 및 전문 실사 라이선스를 선택하세요.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Tier 1: Explorer -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-tier-name">Explorer</div>
+            <div class="pricing-tier-desc">신약 타깃 탐색을 시작하는 개인 연구원 및 학생을 위한 기본 플랜</div>
+            
+            <div class="pricing-price-wrap">
+              <span class="pricing-price">$0</span>
+              <span class="pricing-period">/ month</span>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>기본 타깃 실시간 조회 (월 5회)</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>AlphaFold 3D 분자 구조 대화형 뷰어</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>ChEMBL 상위 10개 화합물 테이블 확인</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>웹 브라우저 기본 지원</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">
+            무료 타깃 프로파일링 시작
+          </a>
+        </div>
+
+        <!-- Tier 2: Biotech Pro (Featured) -->
+        <div class="pricing-card pricing-card-featured">
+          <div class="popular-ribbon">RECOMMENDED</div>
+          <div>
+            <div class="pricing-tier-name" style="color: #60A5FA;">Biotech Pro</div>
+            <div class="pricing-tier-desc">타깃 선행 조사를 정례화하고 보고서를 발행하는 바이오텍 R&D 팀</div>
+            
+            <div class="pricing-price-wrap">
+              <span class="pricing-price">$299</span>
+              <span class="pricing-period">/ month</span>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>HTML / PDF Dossier 무제한 출력</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>ChEMBL 화합물 CSV & FASTA 즉시 추출</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>기본 3개 계정(3 Seats) 제공</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>우선 쿼리 처리 및 실시간 캐싱 가속</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>RDKit 고화질 화학식 일괄 다운로드</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow" style="width: 100%;">
+            Launch Pro Demo 🚀
+          </a>
+        </div>
+
+        <!-- Tier 3: Due Diligence -->
+        <div class="pricing-card">
+          <div>
+            <div class="pricing-tier-name">Due Diligence</div>
+            <div class="pricing-tier-desc">라이선싱 실사, 투자 심사 및 특허 검토를 수행하는 전문 기관</div>
+            
+            <div class="pricing-price-wrap">
+              <span class="pricing-price">$999</span>
+              <span class="pricing-period">/ month</span>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>VC / 특허법인 전용 종합 실사 리포트</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span><strong>전사 팀 무제한 라이선스 (Unlimited Seats)</strong></span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>기관 로고 커스텀 워터마크 브랜딩 지원</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>전담 기술 지원 및 맞춤형 API 연동 상담</span>
+              </li>
+              <li class="pricing-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>SLA 99.9% 가동률 보장</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%;">
+            엔터프라이즈 앱 실행
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ SECTION ==================== -->
+  <section id="faq" class="section" style="background: rgba(11, 19, 43, 0.2);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Frequently Asked Questions</span>
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <p class="section-desc">TargetPulse 도입 및 기술적 질의에 대한 상세한 안내입니다.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>TargetPulse는 어떤 기술 아키텍처로 구동되나요?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            TargetPulse는 유럽 생물정보학 연구소(EMBL-EBI), AlphaFold DB, 미국 국립생물공학정보센터(NCBI), OpenTargets GraphQL API를 비동기 병렬 파이프라인으로 호출하여 실시간 데이터를 정규화합니다. 로컬에는 분자 구조 가시화를 위한 py3Dmol과 화학정보학 툴킷인 RDKit 엔진이 결합되어 10초 이내에 완전한 프로파일을 생성합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>생성된 Dossier 보고서를 특허 심사나 투자 심의에 사용할 수 있나요?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            네, 출력되는 Dossier는 글로벌 신뢰도가 검증된 공식 공공 DB의 표준 ID(UniProt Accession, ChEMBL Molecule ID, PubMed PMID) 및 고화질 2D 화학 구조식을 포함하고 있어 기술실사(Due Diligence) 미팅 및 특허 선행 기술 조사용 공식 첨부 문서로 직접 활용할 수 있습니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>별도의 서버 설치나 클라우드 인프라 세팅이 필요한가요?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            아닙니다. TargetPulse는 완전 관리형 클라우드 웹 애플리케이션으로 제공되므로 웹 브라우저만 있으면 즉시 접속하여 유전자 심볼 입력만으로 모든 기능을 활용할 수 있습니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>사내 비공개 신규 표적(Proprietary Target) 연동도 가능한가요?</span>
+            <span class="faq-toggle-icon">+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Due Diligence 및 엔터프라이즈 라이선스를 통해 제약사 사내 LIMS(실험실정보관리시스템) 또는 사내 화합물 라이브러리와 온프레미스 연동이 가능한 커스텀 파이프라인 구축을 지원합니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="final-cta-box">
+        <h2 class="final-cta-title">지금 10초 만에 첫 타깃 실사를 시작하세요</h2>
+        <p class="final-cta-desc">
+          EGFR, KRAS, BRAF 등 분석하고자 하는 유전자 심볼을 입력하고,<br />
+          검증된 5대 공공 DB 기반의 완전 자동화된 신약 타깃 프로파일링을 경험해 보세요.
+        </p>
+        <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg btn-glow">
+          Launch TargetPulse Web App 🚀
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="footer-copy">
+        <div style="font-weight: 800; font-size: 1.1rem; color: #FFFFFF; display: flex; align-items: center; gap: 8px;">
+          <span style="color: #2563EB;">●</span> TargetPulse
+        </div>
+        <div>AI-Assisted Bio-DeepTech Target Profiling Engine</div>
+        <div style="font-size: 0.8rem; color: #64748B; margin-top: 4px;">Powered by ConnectAI LAB Suite &bull; UniProt, AlphaFold, ChEMBL, OpenTargets, PubMed</div>
+      </div>
+      <div>
+        <a href="https://bio-deeptech.streamlit.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.82rem;">
+          Web App Direct Access &rarr;
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./js/main.js"></script>
+</body>
+</html>
+
