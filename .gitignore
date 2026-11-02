@@ -26,6 +26,12 @@ dist-ssr
 # Vercel
 .vercel
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+
 # Environment variables
 .env
 .env.production
@@ -36,3 +42,9 @@ dist-ssr
 .env.test.local
 
 .vercel
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
